@@ -22,7 +22,7 @@
 	let shareSession = async (session: ScrollSession) => {
 		const encoded = encodeSession(session);
 		await navigator.clipboard.writeText(encoded);
-		toastState.add("Exported session", "Session code coppied to clipboard", 3000);
+		toastState.add("Exported session", "Session code copied to clipboard", 3000);
 	};
 
 	let importSession = async (encoded: string) => {

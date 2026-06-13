@@ -14,8 +14,17 @@ function createEmptySession(name: string): ScrollSession {
   };
 }
 
+function isValidSession(session: any): session is ScrollSession {
+  return (
+    session &&
+    typeof session.id === 'string' &&
+    typeof session.sessionName === 'string' &&
+    Array.isArray(session.scrolls)
+  );
+}
+
 class SessionsStore extends LocalStore<ScrollSession[]> {
-  create(name: string) {
+  create(name: string): string {
     const session = createEmptySession(name)
     this.value = [
       ...this.value,
@@ -24,24 +33,38 @@ class SessionsStore extends LocalStore<ScrollSession[]> {
     return session.id;
   }
 
-  update(session: ScrollSession) {
+  update(session: ScrollSession): boolean {
     this.value = this.value.map((s) =>
       s.id === session.id ? session : s
     );
+    return true;
   }
 
-  remove(id: string) {
+  remove(id: string): boolean {
     this.value = this.value.filter(
       (s) => s.id !== id
     );
+    return true;
   }
 
-  rename(id: string, name: string) {
+  rename(id: string, name: string): boolean {
+    const session = this.value.find((s) => s.id === id);
+    if (!session) return false;
+    if (session.sessionName === name) return false;
     this.value = this.value.map((s) =>
-      s.id === id
-        ? { ...s, sessionName: name }
-        : s
+      s.id === id ? { ...s, sessionName: name } : s
     );
+    return true;
+  }
+
+  import(session: unknown): string | null {
+    if (!isValidSession(session)) { return null; }
+    const safeSession: ScrollSession = {
+      ...session,
+      id: crypto.randomUUID()
+    };
+    this.value = [...this.value, safeSession];
+    return safeSession.id;
   }
 }
 

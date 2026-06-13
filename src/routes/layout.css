@@ -50,3 +50,5 @@
   --color-success-900: var(--color-green-900);
   --color-success-950: var(--color-green-950);
 }
+
+@custom-variant hocus (&:hover, &:focus);

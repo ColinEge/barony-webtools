@@ -2,6 +2,11 @@
 	import { sessions } from '$lib/stores/sessions.svelte';
 	import List from 'phosphor-svelte/lib/ListIcon';
 	import { ui } from '$lib/stores/ui.svelte';
+	import Button from '../ui/Button.svelte';
+	import Input from '../ui/Input.svelte';
+	import { getToastState } from '$lib/state/toast-state.svelte';
+
+	const toastState = getToastState();
 
 	interface Props {
 		sidebarOpen: boolean;
@@ -10,11 +15,12 @@
 	let { sidebarOpen = $bindable() }: Props = $props();
 
 	let name = $state('');
-	let createSession = () => {
-		if (!name.trim()) return;
+	let createSession = (): boolean => {
+		if (!name.trim()) return false;
 		const id = sessions.create(name.trim());
 		ui.selectedSessionId.value = id;
 		name = '';
+		return true;
 	};
 </script>
 
@@ -22,25 +28,17 @@
 	class="flex w-full items-center gap-2 border-b border-neutral-800 bg-neutral-950 p-3"
 	onsubmit={(event) => {
 		event.preventDefault();
-		createSession();
-		sidebarOpen = false;
+		if (createSession()) {
+			toastState.add("Created session", "New session created and selected", 3000)
+			sidebarOpen = false;
+		}
 	}}
 >
-	<button
-		type="button"
-		class="rounded bg-neutral-900 px-3 py-2 text-neutral-100"
-		onclick={() => (sidebarOpen = !sidebarOpen)}
-	>
+	<Button type="button" class="px-3 py-3" onclick={() => (sidebarOpen = !sidebarOpen)}>
 		<List />
-	</button>
+	</Button>
 
-	<input
-		bind:value={name}
-		placeholder="New session"
-		class="min-w-0 flex-1 rounded border border-neutral-700 bg-neutral-900 px-3 py-2"
-	/>
+	<Input bind:value={name} placeholder="New session" class="flex-1 px-2 py-2" />
 
-	<button type="submit" class="shrink-0 rounded bg-primary-500 px-4 py-2 text-black">
-		Create
-	</button>
+	<Button variant="primary" type="submit" class="shrink-0 px-3 py-2">Create</Button>
 </form>

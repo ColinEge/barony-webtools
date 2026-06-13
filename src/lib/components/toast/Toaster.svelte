@@ -6,7 +6,7 @@
 </script>
 
 <div class="absolute right-2 top-2 flex flex-col gap-2">
-	{#each toastState.toasts as toast}
+	{#each toastState.toasts as toast (toast.id)}
 		<Toast {toast} />
 	{/each}
 </div>

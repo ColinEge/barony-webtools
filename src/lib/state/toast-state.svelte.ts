@@ -1,5 +1,6 @@
 import { getContext, onDestroy, setContext } from 'svelte';
 import type { Toast } from '$lib/models/toast';
+import { v4 as uuidv4 } from 'uuid';
 
 export class ToastState {
 	toasts = $state<Toast[]>([]);
@@ -15,7 +16,7 @@ export class ToastState {
 	}
 
 	add(title: string, message: string, durationMs = 5000) {
-		const id = crypto.randomUUID();
+		const id = uuidv4();
 		this.toasts.push({
 			id,
 			title,

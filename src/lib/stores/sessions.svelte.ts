@@ -1,10 +1,11 @@
 import { LocalStore } from '$lib/state/localStore.svelte';
 import { SCROLLS } from '$lib/data/scrolls';
 import type { ScrollSession } from '$lib/models/scroll';
+import { v4 as uuidv4 } from "uuid";
 
 function createEmptySession(name: string): ScrollSession {
   return {
-    id: crypto.randomUUID(),
+    id: uuidv4(),
     sessionName: name,
     scrolls: SCROLLS.map((s) => ({
       scrollId: s.id,

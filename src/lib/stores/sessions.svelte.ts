@@ -16,10 +16,12 @@ function createEmptySession(name: string): ScrollSession {
 
 class SessionsStore extends LocalStore<ScrollSession[]> {
   create(name: string) {
+    const session = createEmptySession(name)
     this.value = [
       ...this.value,
-      createEmptySession(name)
+      session
     ];
+    return session.id;
   }
 
   update(session: ScrollSession) {

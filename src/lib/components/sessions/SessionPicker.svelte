@@ -2,12 +2,9 @@
 	import { sessions } from '$lib/stores/sessions.svelte';
 	import Trash from 'phosphor-svelte/lib/TrashIcon';
 	import Pencil from 'phosphor-svelte/lib/PencilIcon';
-
-	let {
-		selectedId = $bindable()
-	}: {
-		selectedId: string | null;
-	} = $props();
+	import { ui } from '$lib/stores/ui.svelte';
+	
+	let selectedId = $derived(ui.selectedSessionId.value);
 
 	let editingId = $state<string | null>(null);
 	let draftName = $state('');
@@ -38,7 +35,7 @@
 	};
 </script>
 
-<div class="w-64 border-r border-neutral-800 bg-neutral-950 p-3">
+<div class="min-w-full sm:min-w-0 border-r border-neutral-800 bg-neutral-950 p-3">
 	<h2 class="mb-3 text-sm text-neutral-400">Sessions</h2>
 
 	{#each sessions.value as session (session.id)}
@@ -61,7 +58,7 @@
 					<input
 						class="w-full rounded bg-neutral-800 px-2 py-1 text-sm"
 						bind:value={draftName}
-            bind:this={inputEl}
+						bind:this={inputEl}
 						onblur={() => editSessionName(session.id, draftName)}
 						onkeydown={(e) => {
 							if (e.key === 'Enter') {
@@ -75,7 +72,7 @@
 				{:else}
 					<button
 						class="w-full text-left text-sm text-neutral-100"
-						onclick={() => (selectedId = session.id)}
+						onclick={() => (ui.selectedSessionId.value = session.id)}
 						ondblclick={() => selectEditSessionName(session.id, session.sessionName)}
 					>
 						{session.sessionName}

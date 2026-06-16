@@ -5,6 +5,7 @@
 	import Toaster from '$lib/components/toast/Toaster.svelte';
 	import { ui } from '$lib/stores/ui.svelte';
 	import { sessions } from '$lib/stores/sessions.svelte';
+	import Navbar from '$lib/components/layout/Navbar.svelte';
 
 	let { children } = $props();
 
@@ -21,5 +22,12 @@
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 
-<Toaster />
-{@render children()}
+<div class="flex h-screen flex-col">
+	<Navbar />
+	<Toaster />
+
+	<div class="flex h-screen flex-col bg-neutral-950 text-neutral-100">
+		{@render children()}
+	</div>
+</div>
+

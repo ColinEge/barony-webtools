@@ -66,10 +66,7 @@
 </script>
 
 <div class="w-full overflow-x-auto h-full">
-	<div
-	class="relative h-full"
-	style={`width: ${GRAPH_WIDTH}px; min-width: ${GRAPH_WIDTH}px;`}
->
+	<div class="relative h-full" style={`width: ${GRAPH_WIDTH}px; min-width: ${GRAPH_WIDTH}px;`}>
 		<!-- SVG LAYER -->
 		<svg class="absolute inset-0 w-full h-full z-0">
 

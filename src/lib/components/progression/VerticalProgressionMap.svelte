@@ -120,7 +120,7 @@
 		<div class="relative z-10">
 			{#each mainNodes as node (node.id)}
 				<div
-					class="absolute w-44"
+					class="absolute z-0 w-44 hover:z-50"
 					style={`left: ${MAIN_X}px; top: ${y(node.position)}px; transform: translate(-50%, -50%);`}
 				>
 					<DungeonNodeView {node} />
@@ -132,7 +132,7 @@
 		<div class="relative z-10">
 			{#each secretNodes as node (node.id)}
 				<div
-					class="absolute w-44"
+					class="absolute z-0 w-44 hover:z-50"
 					style={`left: ${SECRET_X}px; top: ${y(node.position)}px; transform: translate(-50%, -50%);`}
 				>
 					<DungeonNodeView {node} />

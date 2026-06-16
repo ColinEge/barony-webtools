@@ -10,12 +10,12 @@
 	} = $props();
 </script>
 
-<div class="w-full h-full">
+<div class="h-full w-full">
 	<div class="block md:hidden">
 		<VerticalProgressionMap graph={graph} />
 	</div>
 
-	<div class="hidden md:block h-full">
+	<div class="hidden h-full md:block">
 		<HorizontalProgressionMap graph={graph} />
 	</div>
 </div>

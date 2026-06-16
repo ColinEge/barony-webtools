@@ -17,7 +17,7 @@
 	{@render children?.()}
 
 	{#if open}
-		<div class="absolute z-99 mt-2 w-72 rounded-md border border-neutral-700 bg-neutral-900 p-3 shadow-xl">
+		<div class="absolute z-999 mt-2 w-72 rounded-md border border-neutral-700 bg-neutral-900 p-3 shadow-xl">
 			{#if data.image}
 				<img src={data.image} class="mb-2 w-full rounded image-pixelated" />
 			{/if}

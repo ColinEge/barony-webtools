@@ -113,6 +113,228 @@ export const DUNGEON_GRAPH: DungeonGraph = {
 			itemIds: [
 				"ArtifactBoots"
 			]
+		},
+		{
+			id: 'swampExit',
+			label: 'Swamp Exit',
+			column: 'main',
+			position: 10,
+		},
+		{
+			id: 'labyrinth1',
+			label: 'Labyrinth 1',
+			column: 'main',
+			position: 11,
+		},
+		{
+			id: 'labyrinth2',
+			label: 'Labyrinth 2',
+			column: 'main',
+			position: 12,
+		},
+		{
+			id: 'labyrinth3',
+			label: 'Labyrinth 3',
+			column: 'main',
+			position: 13,
+			itemIds: [
+				"OrbRed"
+			]
+		},
+		{
+			id: 'labyrinth4',
+			label: 'Labyrinth 4',
+			column: 'main',
+			position: 14,
+		},
+		{
+			id: 'sokoban',
+			label: 'Sokoban',
+			column: 'secret',
+			position: 11.5,
+			itemIds: [
+				"ArtifactGloves"
+			]
+		},
+		{
+			id: 'maze',
+			label: 'Minotaur Maze',
+			column: 'secret',
+			position: 13.5,
+			itemIds: [
+				"Gungnir"
+			]
+		},
+		{
+			id: 'labyrinthExit',
+			label: 'Labyrinth Exit',
+			column: 'main',
+			position: 15
+		},
+		{
+			id: 'ruins1',
+			label: 'Ruins1',
+			column: 'main',
+			position: 16
+		},
+		{
+			id: 'ruins2',
+			label: 'Ruins2',
+			column: 'main',
+			position: 17
+		},
+		{
+			id: 'ruins3',
+			label: 'Ruins3',
+			column: 'main',
+			position: 18,
+			itemIds: [
+				"OrbBlue"
+			]
+		},
+		{
+			id: 'ruins4',
+			label: 'Ruins4',
+			column: 'main',
+			position: 19
+		},
+		{
+			id: 'herx',
+			label: `Herx's Lair`,
+			column: 'main',
+			position: 20
+		},
+		{
+			id: 'library',
+			label: 'Mystic Library',
+			column: 'secret',
+			position: 16.5
+		},
+		{
+			id: 'underworld3',
+			label: `Underworld 1`,
+			column: 'secret',
+			position: 18.5
+		},
+		{
+			id: 'underworld4',
+			label: `Underworld 2`,
+			column: 'secret',
+			position: 19.5
+		},
+		{
+			id: 'hell1',
+			label: `Hell 1`,
+			column: 'secret',
+			position: 20.5
+		},
+		{
+			id: 'hell2',
+			label: `Hell 2`,
+			column: 'secret',
+			position: 21.5
+		},
+		{
+			id: 'hell3',
+			label: `Hell 3`,
+			column: 'secret',
+			position: 22.5
+		},
+		{
+			id: 'baphomet',
+			label: `Baphomet's Domain`,
+			column: 'secret',
+			position: 23.5
+		},
+		{
+			id: 'hamlet',
+			label: `Hamlet`,
+			column: 'main',
+			position: 24
+		},
+		{
+			id: 'caves1',
+			label: `Crystal Caves 1`,
+			column: 'main',
+			position: 25
+		},
+		{
+			id: 'caves2',
+			label: `Crystal Caves 2`,
+			column: 'main',
+			position: 26
+		},
+		{
+			id: 'caves3',
+			label: `Crystal Caves 3`,
+			column: 'main',
+			position: 27
+		},
+		{
+			id: 'caves4',
+			label: `Crystal Caves 4`,
+			column: 'main',
+			position: 28
+		},
+		{
+			id: 'lair',
+			label: `Cockatrice Lair`,
+			column: 'secret',
+			position: 27.5,
+			itemIds: [
+				"ArtifactBreastpiece"
+			]
+		},
+		{
+			id: 'cavesExit',
+			label: `Caves Exit`,
+			column: 'main',
+			position: 29
+		},
+		{
+			id: 'citadel1',
+			label: `Citadel 1`,
+			column: 'main',
+			position: 30
+		},
+		{
+			id: 'citadel2',
+			label: `Citadel 2`,
+			column: 'main',
+			position: 31
+		},
+		{
+			id: 'citadel3',
+			label: `Citadel 3`,
+			column: 'main',
+			position: 32
+		},
+		{
+			id: 'citadel4',
+			label: `Citadel 4`,
+			column: 'main',
+			position: 33
+		},
+		{
+			id: 'citadelExit',
+			label: `Citadel Exit`,
+			column: 'main',
+			position: 34
+		},
+		{
+			id: 'bramCastle',
+			label: `Bram's Castle`,
+			column: 'secret',
+			position: 32.5,
+			itemIds: [
+				"ArtifactCloak"
+			]
+		},
+		{
+			id: 'sanctum',
+			label: `Sanctum`,
+			column: 'main',
+			position: 35
 		}
 	],
 	edges: [
@@ -241,6 +463,252 @@ export const DUNGEON_GRAPH: DungeonGraph = {
 			id: 'hauntedCastle-to-swamp4',
 			from: 'hauntedCastle',
 			to: 'swamp4',
+			type: 'transition'
+		},
+		{
+			id: 'swamp4-to-swampExit',
+			from: 'swamp4',
+			to: 'swampExit',
+			type: 'main'
+		},
+		{
+			id: 'swampExit-to-labyrinth1',
+			from: 'swampExit',
+			to: 'labyrinth1',
+			type: 'main'
+		},
+		{
+			id: 'labyrinth1-to-labyrinth2',
+			from: 'labyrinth1',
+			to: 'labyrinth2',
+			type: 'main'
+		},
+		{
+			id: 'labyrinth2-to-labyrinth3',
+			from: 'labyrinth2',
+			to: 'labyrinth3',
+			type: 'main'
+		},
+		{
+			id: 'labyrinth3-to-labyrinth4',
+			from: 'labyrinth3',
+			to: 'labyrinth4',
+			type: 'main'
+		},
+		{
+			id: 'labyrinth4-to-labyrinthExit',
+			from: 'labyrinth4',
+			to: 'labyrinthExit',
+			type: 'main'
+		},
+		{
+			id: 'labyrinth1-to-sokoban',
+			from: 'labyrinth1',
+			to: 'sokoban',
+			type: 'secret'
+		},
+		{
+			id: 'sokoban-to-labyrinth2',
+			from: 'sokoban',
+			to: 'labyrinth2',
+			type: 'transition'
+		},
+		{
+			id: 'labyrinth3-to-maze',
+			from: 'labyrinth3',
+			to: 'maze',
+			type: 'secret'
+		},
+		{
+			id: 'maze-to-labyrinth4',
+			from: 'maze',
+			to: 'labyrinth4',
+			type: 'transition'
+		},
+		{
+			id: 'labyrinthExit-to-ruins1',
+			from: 'labyrinthExit',
+			to: 'ruins1',
+			type: 'main'
+		},
+		{
+			id: 'ruins1-to-ruins2',
+			from: 'ruins1',
+			to: 'ruins2',
+			type: 'main'
+		},
+		{
+			id: 'ruins2-to-ruins3',
+			from: 'ruins2',
+			to: 'ruins3',
+			type: 'main'
+		},
+		{
+			id: 'ruins3-to-ruins4',
+			from: 'ruins3',
+			to: 'ruins4',
+			type: 'main'
+		},
+		{
+			id: 'ruins4-to-herx',
+			from: 'ruins4',
+			to: 'herx',
+			type: 'secret'
+		},
+		{
+			id: 'ruins1-to-mysticLibrary',
+			from: 'ruins1',
+			to: 'library',
+			type: 'secret'
+		},
+		{
+			id: 'library-to-ruins2',
+			from: 'library',
+			to: 'ruins2',
+			type: 'transition'
+		},
+		{
+			id: 'ruins3-to-underworld3',
+			from: 'ruins3',
+			to: 'underworld3',
+			type: 'secret'
+		},
+		{
+			id: 'underworld3-to-herx',
+			from: 'underworld3',
+			to: 'herx',
+			type: 'transition'
+		},
+		{
+			id: 'underworld3-to-underworld4',
+			from: 'underworld3',
+			to: 'underworld4',
+			type: 'secret'
+		},
+		{
+			id: 'underworld4-to-hell1',
+			from: 'underworld4',
+			to: 'hell1',
+			type: 'secret'
+		},
+		{
+			id: 'hell1-to-hell2',
+			from: 'hell1',
+			to: 'hell2',
+			type: 'secret'
+		},
+		{
+			id: 'hell2-to-hell3',
+			from: 'hell2',
+			to: 'hell3',
+			type: 'secret'
+		},
+		{
+			id: 'hell3-to-baphomet',
+			from: 'hell3',
+			to: 'baphomet',
+			type: 'secret'
+		},
+		{
+			id: 'baphomet-to-hamlet',
+			from: 'baphomet',
+			to: 'hamlet',
+			type: 'secret'
+		},
+		{
+			id: 'herx-to-hamlet',
+			from: 'herx',
+			to: 'hamlet',
+			type: 'secret'
+		},
+		{
+			id: 'hamlet-to-caves1',
+			from: 'hamlet',
+			to: 'caves1',
+			type: 'main'
+		},
+		{
+			id: 'caves1-to-caves2',
+			from: 'caves1',
+			to: 'caves2',
+			type: 'main'
+		},
+		{
+			id: 'caves2-to-caves3',
+			from: 'caves2',
+			to: 'caves3',
+			type: 'main'
+		},
+		{
+			id: 'caves3-to-caves4',
+			from: 'caves3',
+			to: 'caves4',
+			type: 'main'
+		},
+		{
+			id: 'caves3-to-lair',
+			from: 'caves3',
+			to: 'lair',
+			type: 'secret'
+		},
+		{
+			id: 'lair-to-caves4',
+			from: 'lair',
+			to: 'caves4',
+			type: 'transition'
+		},
+		{
+			id: 'caves4-to-cavesExit',
+			from: 'caves4',
+			to: 'cavesExit',
+			type: 'main'
+		},
+		{
+			id: 'cavesExit-to-citadel1',
+			from: 'cavesExit',
+			to: 'citadel1',
+			type: 'main'
+		},
+		{
+			id: 'citadel1-to-citadel2',
+			from: 'citadel1',
+			to: 'citadel2',
+			type: 'main'
+		},
+		{
+			id: 'citadel2-to-citadel3',
+			from: 'citadel2',
+			to: 'citadel3',
+			type: 'main'
+		},
+		{
+			id: 'citadel3-to-citadel4',
+			from: 'citadel3',
+			to: 'citadel4',
+			type: 'main'
+		},
+		{
+			id: 'citadel4-to-citadelExit',
+			from: 'citadel4',
+			to: 'citadelExit',
+			type: 'main'
+		},
+		{
+			id: 'citadel3-to-bramCastle',
+			from: 'citadel3',
+			to: 'bramCastle',
+			type: 'secret'
+		},
+		{
+			id: 'citadelExit-to-sanctum',
+			from: 'citadelExit',
+			to: 'sanctum',
+			type: 'main'
+		},
+		{
+			id: 'bramCastle-to-citadel4',
+			from: 'bramCastle',
+			to: 'citadel4',
 			type: 'transition'
 		}
 	]

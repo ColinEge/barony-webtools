@@ -61,7 +61,7 @@
 	}
 </script>
 
-<div class="w-full overflow-x-auto">
+<div class="h-full w-full overflow-y-auto overflow-x-hidden">
 	<div class="relative min-h-200 min-w-150" style={`height: ${GRAPH_HEIGHT}px; min-height: ${GRAPH_HEIGHT}px;`}>
 
 		<!-- SVG LAYER -->
@@ -116,19 +116,7 @@
 
 		</svg>
 
-		<!-- MAIN COLUMN -->
-		<div class="relative z-10">
-			{#each mainNodes as node (node.id)}
-				<div
-					class="absolute z-0 w-44 hover:z-50"
-					style={`left: ${MAIN_X}px; top: ${y(node.position)}px; transform: translate(-50%, -50%);`}
-				>
-					<DungeonNodeView {node} />
-				</div>
-			{/each}
-		</div>
-
-		<!-- SECRET COLUMN -->
+<!-- SECRET COLUMN -->
 		<div class="relative z-10">
 			{#each secretNodes as node (node.id)}
 				<div
@@ -140,5 +128,16 @@
 			{/each}
 		</div>
 
+		<!-- MAIN COLUMN -->
+		<div class="relative z-10">
+			{#each mainNodes as node (node.id)}
+				<div
+					class="absolute z-0 w-44 hover:z-50"
+					style={`left: ${MAIN_X}px; top: ${y(node.position)}px; transform: translate(-50%, -50%);`}
+				>
+					<DungeonNodeView {node} />
+				</div>
+			{/each}
+		</div>
 	</div>
 </div>

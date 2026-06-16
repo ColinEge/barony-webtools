@@ -14,7 +14,7 @@
 	}
 </script>
 
-<div class="h-full w-full">
+<div class="flex h-full w-full flex-col overflow-hidden">
 	<!-- TOGGLE BUTTON -->
 	<div class="mb-2 flex justify-end">
 		<button

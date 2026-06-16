@@ -36,12 +36,12 @@
 		return node.column === 'main' ? MAIN_Y : SECRET_Y;
 	}
 
-	const maxPos = Math.max(...nodes.map(n => n.position));
+	const maxPos = Math.max(...nodes.map((n) => n.position));
 
 	const LEFT_PADDING = 120;
 	const RIGHT_PADDING = 200;
 
-	const GRAPH_WIDTH = LEFT_PADDING + (maxPos * STEP_X) + RIGHT_PADDING;
+	const GRAPH_WIDTH = LEFT_PADDING + maxPos * STEP_X + RIGHT_PADDING;
 
 	function offset(from: any, to: any) {
 		const dx = x(to.position) - x(from.position);
@@ -65,11 +65,10 @@
 	}
 </script>
 
-<div class="w-full overflow-x-auto h-full">
+<div class="h-full w-full overflow-x-auto overflow-y-hidden">
 	<div class="relative h-full" style={`width: ${GRAPH_WIDTH}px; min-width: ${GRAPH_WIDTH}px;`}>
 		<!-- SVG LAYER -->
 		<svg class="absolute inset-0 w-full h-full z-0">
-
 			<defs>
 				<marker
 					id="arrow"
@@ -115,20 +114,7 @@
 					{/if}
 				{/if}
 			{/each}
-
 		</svg>
-
-		<!-- MAIN ROW -->
-		<div class="relative">
-			{#each mainNodes as node (node.id)}
-				<div
-					class="absolute z-0 w-44 hover:z-50"
-					style={`left: ${x(node.position)}px; top: ${MAIN_Y}px; transform: translateX(-50%);`}
-				>
-					<DungeonNodeView {node} />
-				</div>
-			{/each}
-		</div>
 
 		<!-- SECRET ROW -->
 		<div class="relative">
@@ -136,6 +122,18 @@
 				<div
 					class="absolute z-0 w-44 hover:z-50"
 					style={`left: ${x(node.position)}px; top: ${SECRET_Y}px; transform: translateX(-50%);`}
+				>
+					<DungeonNodeView {node} />
+				</div>
+			{/each}
+		</div>
+
+		<!-- MAIN ROW -->
+		<div class="relative">
+			{#each mainNodes as node (node.id)}
+				<div
+					class="absolute z-0 w-44 hover:z-50"
+					style={`left: ${x(node.position)}px; top: ${MAIN_Y}px; transform: translateX(-50%);`}
 				>
 					<DungeonNodeView {node} />
 				</div>

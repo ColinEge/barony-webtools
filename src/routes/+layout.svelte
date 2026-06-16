@@ -22,4 +22,6 @@
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 
 <Toaster />
-{@render children()}
+<div class="flex h-screen flex-col bg-neutral-950 text-neutral-100">
+	{@render children()}
+</div>

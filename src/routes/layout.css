@@ -52,3 +52,7 @@
 }
 
 @custom-variant hocus (&:hover, &:focus);
+
+@utility image-pixelated {
+	image-rendering: pixelated;
+}

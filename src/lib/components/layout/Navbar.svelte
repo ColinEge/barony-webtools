@@ -9,6 +9,10 @@
 		{
 			label: 'Dungeon Map',
 			href: '/barony/progression'
+		},
+		{
+			label: 'Websites',
+			href: '/wttg3/sites'
 		}
 	];
 </script>

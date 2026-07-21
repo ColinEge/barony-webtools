@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { sessions } from '$lib/stores/sessions.svelte';
+	import { sessions } from '$lib/games/barony/stores/scrolls/sessions.svelte';
 	import List from 'phosphor-svelte/lib/ListIcon';
 	import { ui } from '$lib/stores/ui.svelte';
 	import Button from '../ui/Button.svelte';

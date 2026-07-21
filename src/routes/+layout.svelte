@@ -4,7 +4,7 @@
 	import favicon from '$lib/assets/favicon.svg';
 	import Toaster from '$lib/components/toast/Toaster.svelte';
 	import { ui } from '$lib/stores/ui.svelte';
-	import { sessions } from '$lib/stores/sessions.svelte';
+	import { sessions } from '$lib/games/barony/stores/scrolls/sessions.svelte';
 	import Navbar from '$lib/components/layout/Navbar.svelte';
 
 	let { children } = $props();

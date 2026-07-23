@@ -16,21 +16,19 @@
 	{#each images.pages as page}
 		<section>
 			<h4 class="mb-3 text-lg text-neutral-200">
-				{page.title}
+				{page}
 			</h4>
 
 			<div class="grid gap-4">
-				{#each page.images as image}
-					<img
-						src={siteImageUrl(siteId, image)}
-						alt={page.title}
+				<img
+						src={siteImageUrl(siteId, page)}
+						alt={page}
 						class="
 							w-full
 							rounded-lg
 							border border-neutral-800
 						"
 					/>
-				{/each}
 			</div>
 		</section>
 	{/each}

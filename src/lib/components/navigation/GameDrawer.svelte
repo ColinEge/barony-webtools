@@ -32,9 +32,14 @@
 	});
 
 	function navigate(tool: Tool) {
-		selectedTool = tool
+		selectedTool = tool;
 		open = false;
 		goto(tool.href);
+	}
+	function home() {
+		selectedTool = null;
+		open = false;
+		goto('/');
 	}
 </script>
 
@@ -47,18 +52,13 @@
 </button>
 
 {#if open}
-	<div
-		class="fixed inset-0 z-40 bg-black/60"
-		onclick={() => (open = false)}
-	></div>
+	<div class="fixed inset-0 z-40 bg-black/60" onclick={() => (open = false)}></div>
 
 	<aside
 		class="fixed left-0 top-0 z-50 flex h-full w-72 flex-col border-r border-neutral-800 bg-neutral-950 shadow-2xl"
 	>
 		<div class="flex items-center justify-between border-b border-neutral-800 p-4">
-			<h2 class="text-lg font-semibold text-neutral-100">
-				Games
-			</h2>
+			<h2 class="text-lg font-semibold text-neutral-100">Games</h2>
 
 			<button
 				class="rounded-lg p-2 text-neutral-400 transition-colors hover:bg-neutral-900 hover:text-neutral-100"
@@ -69,6 +69,19 @@
 		</div>
 
 		<nav class="flex-1 overflow-y-auto p-3">
+			<section class="mb-6">
+				<SelectableListItem selected={selectedTool?.id === 'home'}>
+				{#snippet children()}
+					<Button
+						variant="ghost"
+						class="w-full justify-normal text-sm text-neutral-100"
+						onclick={() => home()}
+					>
+						Home
+					</Button>
+				{/snippet}
+				</SelectableListItem>
+			</section>
 			{#each groups as [game, entries]}
 				<section class="mb-6">
 					<h3 class="mb-2 px-2 text-xs font-semibold uppercase tracking-wider text-neutral-500">

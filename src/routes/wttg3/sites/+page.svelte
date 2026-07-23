@@ -1,136 +1,70 @@
 <script lang="ts">
-	import type { Website, TimeWindow} from "$lib/games/wttg3/models/website";
-    import { SITES } from "$lib/games/wttg3/data/websites";
-	
-	let sites: Website[] = SITES;
+	import SessionSelector from '$lib/components/sessions/SessionSelector.svelte';
 
-	type SortMode = "name" | "time";
+	import { sessionContext } from '$lib/stores/sessionContext.svelte';
+	import { sessions } from '$lib/games/wttg3/stores/websites/sessions.svelte';
+	import { navbar } from '$lib/stores/navbar.svelte';
+	import { decodeBase64Url, encodeBase64Url } from '$lib/share/codec';
 
-	let sortMode: SortMode = $state("name");
+	import { WTTG3_KEY } from '$lib/data/session-keys';
+	import WikiCard from '$lib/games/wttg3/components/wikis/WikiCard.svelte';
+	import { createSessionActions } from '$lib/games/wttg3/stores/websites/sessionActions.svelte';
+	import AllSites from '$lib/games/wttg3/components/sites/AllSites.svelte';
+	import { getUnusedSiteIds, getWikiState } from '$lib/games/wttg3/helpers/sessionQueries';
+	import { SITES } from '$lib/games/wttg3/data/websites';
 
-	function formatTime(window?: TimeWindow) {
-		if (!window) {
-			return "";
-		}
+	// Sessions
+	const context = sessionContext(WTTG3_KEY, sessions);
+	const actions = createSessionActions(() => context.session);
+	$effect(() => {
+		navbar.actions = sessionActions;
 
-		return `:${String(window.start).padStart(2, "0")} – :${String(window.end).padStart(2, "0")}`;
-	}
+		return () => {
+			navbar.actions = null;
+		};
+	});
 
-	function sortSites(items: Website[], mode: SortMode) {
-		return [...items].sort((a, b) => {
-			if (mode === "name") {
-				return a.name.localeCompare(b.name);
-			}
-
-			const aStart =
-				a.window?.start ??
-				(a.category === "always" ? -1 : 999);
-
-			const bStart =
-				b.window?.start ??
-				(b.category === "always" ? -1 : 999);
-
-			if (aStart !== bStart) {
-				return aStart - bStart;
-			}
-
-			const aEnd = a.window?.end ?? -1;
-			const bEnd = b.window?.end ?? -1;
-
-			if (aEnd !== bEnd) {
-				return aEnd - bEnd;
-			}
-
-			return a.name.localeCompare(b.name);
-		});
-	}
-
-	const sortedSites = $derived(
-		sortSites(sites, sortMode)
+	// Wikis
+	const wikiStates = $derived(context.session?.data.wikis.map(getWikiState).filter(Boolean) ?? []);
+	const unusedSites = $derived(
+		context.session
+			? Array.from(getUnusedSiteIds(context.session.data)).map((id) => ({
+					id,
+					...SITES[id]
+				}))
+			: []
 	);
 </script>
 
-<div class="space-y-6">
-	<div class="flex items-center justify-between">
-		<h2 class="text-2xl font-semibold text-neutral-200">
-			Sites
-		</h2>
+{#snippet sessionActions()}
+	<SessionSelector
+		sessions={sessions.value}
+		selectedId={context.selectedId}
+		onSelect={(id) => context.select(id)}
+		onCreate={(name) => context.select(sessions.create(name))}
+		onRename={(id, name) => sessions.rename(id, name)}
+		onDelete={(id) => sessions.remove(id)}
+		onImport={(code) => sessions.import(decodeBase64Url(code))}
+		onExport={async (session) => {
+			await navigator.clipboard.writeText(encodeBase64Url(session));
+		}}
+	/>
+{/snippet}
 
-		<select
-			bind:value={sortMode}
-			class="
-				rounded-lg
-				border border-neutral-700
-				bg-neutral-900
-				px-3 py-2
-				text-sm
-				text-neutral-300
-				shadow-sm
-				focus:border-primary-500
-				focus:ring-2
-				focus:ring-primary-500/30
-			"
-		>
-			<option value="name">
-				Alphabetical
-			</option>
-
-			<option value="time">
-				Time slot
-			</option>
-		</select>
-	</div>
-
-	<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-		{#each sortedSites as site}
-			<article
-				class="
-					rounded-xl
-					border border-neutral-800
-					bg-neutral-900
-					p-4
-					shadow-sm
-					transition
-					hocus:border-primary-500
-					hocus:ring-1
-					hocus:ring-primary-500
-				"
-			>
-				<div class="flex items-start justify-between gap-3">
-					<h3 class="font-medium text-neutral-300">
-						{site.name}
-					</h3>
-
-					<span
-						class="
-							rounded-full
-							border
-							px-2.5 py-1
-							text-xs
-							font-medium
-						"
-						class:border-success-700={site.category === "always"}
-						class:bg-success-950={site.category === "always"}
-						class:text-success-400={site.category === "always"}
-
-						class:border-warning-700={site.category === "never"}
-						class:bg-warning-950={site.category === "never"}
-						class:text-warning-400={site.category === "never"}
-
-						class:border-primary-700={site.category === "timed"}
-						class:bg-primary-950={site.category === "timed"}
-						class:text-primary-400={site.category === "timed"}
-					>
-						{site.category}
-					</span>
-				</div>
-
-				{#if site.window}
-					<p class="mt-3 text-sm text-neutral-500">
-						{formatTime(site.window)}
-					</p>
-				{/if}
-			</article>
+<div class="space-y-2 mt-2 mx-2">
+	{#if context.session !== null}
+		{#each wikiStates as wiki}
+			{#if wiki}
+				<WikiCard
+					{wiki}
+					sites={unusedSites}
+					onPurchase={() => actions.purchaseWiki(wiki.id)}
+					onAddSite={(id) => actions.addSite(wiki.id, id)}
+					onRemoveSite={(id) => actions.removeSite(wiki.id, id)}
+				/>
+			{/if}
 		{/each}
-	</div>
+	{:else}
+		<AllSites />
+	{/if}
 </div>

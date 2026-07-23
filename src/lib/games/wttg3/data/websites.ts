@@ -1,107 +1,417 @@
 import type { Website } from "$lib/games/wttg3/models/website";
 
-export const SITES: Array<Website> = [
-    {"name": "Blushing Brides", "category": "always"},
-    {"name": "Cavity Lease", "category": "always"},
-    {"name": "Crisis Calls", "category": "always"},
-    {"name": "Doctor Murder", "category": "always"},
-    {"name": "Dont Waste It", "category": "always"},
-    {"name": "Doughy", "category": "always"},
-    {"name": "Encrave", "category": "always"},
-    {"name": "Forever Friend", "category": "always"},
-    {"name": "Jakobs Sink", "category": "always"},
-    {"name": "LostTapes", "category": "always"},
-    {"name": "Oneless", "category": "always"},
-    {"name": "Prohibited Stockpile", "category": "always"},
-    {"name": "Red Triangle", "category": "always"},
-    {"name": "Ring Ring", "category": "always"},
-    {"name": "Symphoros Chosen", "category": "always"},
-    {"name": "Synapse Decay", "category": "always"},
-    {"name": "Tango Down", "category": "always"},
-    {"name": "Thanks For Visiting!", "category": "always"},
-    {"name": "The Hole", "category": "always"},
-    {"name": "The Light Within", "category": "always"},
-    {"name": "The Loogaroo", "category": "always"},
-    {"name": "Time Sharing", "category": "always"},
-    {"name": "TRACK06", "category": "always"},
-    {"name": "VoluVision", "category": "always"},
-    {"name": "World Wide Workers", "category": "always"},
-    {"name": "The Bomb Maker", "category": "always"},
+export const SITES: Record<string, Website> = {
+    blushing_brides: {
+        name: "Blushing Brides",
+        category: "always"
+    },
+    cavity_lease: {
+        name: "Cavity Lease",
+        category: "always"
+    },
+    crisis_calls: {
+        name: "Crisis Calls",
+        category: "always"
+    },
+    doctor_murder: {
+        name: "Doctor Murder",
+        category: "always"
+    },
+    dont_waste_it: {
+        name: "Dont Waste It",
+        category: "always"
+    },
+    doughy: {
+        name: "Doughy",
+        category: "always"
+    },
+    encrave: {
+        name: "Encrave",
+        category: "always"
+    },
+    forever_friend: {
+        name: "Forever Friend",
+        category: "always"
+    },
+    jakobs_sink: {
+        name: "Jakobs Sink",
+        category: "always"
+    },
+    lost_tapes: {
+        name: "LostTapes",
+        category: "always"
+    },
+    oneless: {
+        name: "Oneless",
+        category: "always"
+    },
+    prohibited_stockpile: {
+        name: "Prohibited Stockpile",
+        category: "always"
+    },
+    red_triangle: {
+        name: "Red Triangle",
+        category: "always"
+    },
+    ring_ring: {
+        name: "Ring Ring",
+        category: "always"
+    },
+    symphoros_chosen: {
+        name: "Symphoros Chosen",
+        category: "always"
+    },
+    synapse_decay: {
+        name: "Synapse Decay",
+        category: "always"
+    },
+    tango_down: {
+        name: "Tango Down",
+        category: "always"
+    },
+    thanks_for_visiting: {
+        name: "Thanks For Visiting!",
+        category: "always"
+    },
+    the_hole: {
+        name: "The Hole",
+        category: "always"
+    },
+    the_light_within: {
+        name: "The Light Within",
+        category: "always"
+    },
+    the_loogaroo: {
+        name: "The Loogaroo",
+        category: "always"
+    },
+    time_sharing: {
+        name: "Time Sharing",
+        category: "always"
+    },
+    track06: {
+        name: "TRACK06",
+        category: "always"
+    },
+    voluvision: {
+        name: "VoluVision",
+        category: "always"
+    },
+    world_wide_workers: {
+        name: "World Wide Workers",
+        category: "always"
+    },
+    the_bomb_maker: {
+        name: "The Bomb Maker",
+        category: "always"
+    },
 
-    {"name": "Dusk Haven", "category": "never"},
-    {"name": "Evidence Locker", "category": "never"},
-    {"name": "Iron Mask", "category": "never"},
-    {"name": "Is Evil", "category": "never"},
-    {"name": "Pale Market", "category": "never"},
-    {"name": "Roses Destruction", "category": "never"},
-    {"name": "Cryptic Forge", "category": "never"},
-    {"name": "Hidden Pleasures", "category": "never"},
+    dusk_haven: {
+        name: "Dusk Haven",
+        category: "never"
+    },
+    evidence_locker: {
+        name: "Evidence Locker",
+        category: "never"
+    },
+    iron_mask: {
+        name: "Iron Mask",
+        category: "never"
+    },
+    is_evil: {
+        name: "Is Evil",
+        category: "never"
+    },
+    pale_market: {
+        name: "Pale Market",
+        category: "never"
+    },
+    roses_destruction: {
+        name: "Roses Destruction",
+        category: "never"
+    },
+    cryptic_forge: {
+        name: "Cryptic Forge",
+        category: "never"
+    },
+    hidden_pleasures: {
+        name: "Hidden Pleasures",
+        category: "never"
+    },
 
-    {"name": "Abyssal Chat", "category": "never"},
-    {"name": "Bathroom Cams", "category": "never"},
-    {"name": "Bone Altar", "category": "never"},
-    {"name": "Carrion Stage", "category": "never"},
-    {"name": "Corpses For Sale", "category": "never"},
-    {"name": "Crimson Bazaar", "category": "never"},
-    {"name": "Crimson Relay", "category": "never"},
-    {"name": "Dread Signal", "category": "never"},
-    {"name": "Drone Spy", "category": "never"},
-    {"name": "Echo Vault", "category": "never"},
-    {"name": "Eternal Loop", "category": "never"},
-    {"name": "Father Donald", "category": "never"},
-    {"name": "Flicker Stream", "category": "never"},
-    {"name": "Foot Doctor", "category": "never"},
-    {"name": "Forgive Me", "category": "never"},
-    {"name": "Ghost Proxy", "category": "never"},
-    {"name": "Gloom Archive", "category": "never"},
-    {"name": "Hollow Key", "category": "never"},
-    {"name": "Iron Ledger", "category": "never"},
-    {"name": "Lost Signals", "category": "never"},
-    {"name": "Mutilation", "category": "never"},
-    {"name": "My Gut", "category": "never"},
-    {"name": "Noir Gallery", "category": "never"},
-    {"name": "Obsidian Trade", "category": "never"},
-    {"name": "Red Veil", "category": "never"},
-    {"name": "Rust Network", "category": "never"},
-    {"name": "Secure Drop", "category": "never"},
-    {"name": "Shade Broker", "category": "never"},
-    {"name": "Shadow Cache", "category": "never"},
-    {"name": "Specter Hub", "category": "never"},
-    {"name": "The Butcher", "category": "never"},
-    {"name": "The Black Waves", "category": "never"},
-    {"name": "The End Of NY", "category": "never"},
-    {"name": "Veiled Eyes", "category": "never"},
-    {"name": "Void Library", "category": "never"},
-    {"name": "Wraith Cam", "category": "never"},
+    abyssal_chat: {
+        name: "Abyssal Chat",
+        category: "never"
+    },
+    bathroom_cams: {
+        name: "Bathroom Cams",
+        category: "never"
+    },
+    bone_altar: {
+        name: "Bone Altar",
+        category: "never"
+    },
+    carrion_stage: {
+        name: "Carrion Stage",
+        category: "never"
+    },
+    corpses_for: {
+        name: "Corpses For Sale",
+        category: "never"
+    },
+    crimson_bazaar: {
+        name: "Crimson Bazaar",
+        category: "never"
+    },
+    crimson_relay: {
+        name: "Crimson Relay",
+        category: "never"
+    },
+    dread_signal: {
+        name: "Dread Signal",
+        category: "never"
+    },
+    drone_spy: {
+        name: "Drone Spy",
+        category: "never"
+    },
+    echo_vault: {
+        name: "Echo Vault",
+        category: "never"
+    },
+    eternal_loop: {
+        name: "Eternal Loop",
+        category: "never"
+    },
+    father_donald: {
+        name: "Father Donald",
+        category: "never"
+    },
+    flicker_stream: {
+        name: "Flicker Stream",
+        category: "never"
+    },
+    foot_doctor: {
+        name: "Foot Doctor",
+        category: "never"
+    },
+    forgive_me: {
+        name: "Forgive Me",
+        category: "never"
+    },
+    ghost_proxy: {
+        name: "Ghost Proxy",
+        category: "never"
+    },
+    gloom_archive: {
+        name: "Gloom Archive",
+        category: "never"
+    },
+    hollow_key: {
+        name: "Hollow Key",
+        category: "never"
+    },
+    iron_ledger: {
+        name: "Iron Ledger",
+        category: "never"
+    },
+    lost_signals: {
+        name: "Lost Signals",
+        category: "never"
+    },
+    mutilation: {
+        name: "Mutilation",
+        category: "never"
+    },
+    my_gut: {
+        name: "My Gut",
+        category: "never"
+    },
+    noir_gallery: {
+        name: "Noir Gallery",
+        category: "never"
+    },
+    obsidian_trade: {
+        name: "Obsidian Trade",
+        category: "never"
+    },
+    red_veil: {
+        name: "Red Veil",
+        category: "never"
+    },
+    rust_network: {
+        name: "Rust Network",
+        category: "never"
+    },
+    secure_drop: {
+        name: "Secure Drop",
+        category: "never"
+    },
+    shade_broker: {
+        name: "Shade Broker",
+        category: "never"
+    },
+    shadow_cache: {
+        name: "Shadow Cache",
+        category: "never"
+    },
+    specter_hub: {
+        name: "Specter Hub",
+        category: "never"
+    },
+    the_butcher: {
+        name: "The Butcher",
+        category: "never"
+    },
+    the_black_waves: {
+        name: "The Black Waves",
+        category: "never"
+    },
+    the_end_of_ny: {
+        name: "The End Of NY",
+        category: "never"
+    },
+    veiled_eyes: {
+        name: "Veiled Eyes",
+        category: "never"
+    },
+    void_library: {
+        name: "Void Library",
+        category: "never"
+    },
+    wraith_cam: {
+        name: "Wraith Cam",
+        category: "never"
+    },
 
-    {"name": "FindLove", "category": "timed", "window": {"start": 0, "end": 15}},
-    {"name": "Forsaken Gifts", "category": "timed", "window": {"start": 0, "end": 15}},
-    {"name": "Mors N More Market", "category": "timed", "window": {"start": 0, "end": 15}},
-    {"name": "Order Of Nine", "category": "timed", "window": {"start": 0, "end": 15}},
-    {"name": "The Prey", "category": "timed", "window": {"start": 0, "end": 15}},
+    find_love: {
+        name: "FindLove",
+        category: "timed",
+        window: { "start": 0, "end": 15 }
+    },
+    forsaken_gifts: {
+        name: "Forsaken Gifts",
+        category: "timed",
+        window: { "start": 0, "end": 15 }
+    },
+    mors_n_more_market: {
+        name: "Mors N More Market",
+        category: "timed",
+        window: { "start": 0, "end": 15 }
+    },
+    order_of_nine: {
+        name: "Order Of Nine",
+        category: "timed",
+        window: { "start": 0, "end": 15 }
+    },
+    the_prey: {
+        name: "The Prey",
+        category: "timed",
+        window: { "start": 0, "end": 15 }
+    },
 
-    {"name": "Blackhat Post", "category": "timed", "window": {"start": 0, "end": 30}},
-    {"name": "Drug Tickets", "category": "timed", "window": {"start": 0, "end": 30}},
-    {"name": "Kill For Me", "category": "timed", "window": {"start": 0, "end": 30}},
-    {"name": "MamaBruguglio", "category": "timed", "window": {"start": 0, "end": 30}},
-    {"name": "Red Handed", "category": "timed", "window": {"start": 0, "end": 30}},
-    {"name": "ViaMarisRoute", "category": "timed", "window": {"start": 0, "end": 30}},
+    black_hat_post: {
+        name: "Blackhat Post",
+        category: "timed",
+        window: { "start": 0, "end": 30 }
+    },
+    drug_tickets: {
+        name: "Drug Tickets",
+        category: "timed",
+        window: { "start": 0, "end": 30 }
+    },
+    kill_for_me: {
+        name: "Kill For Me",
+        category: "timed",
+        window: { "start": 0, "end": 30 }
+    },
+    mama_bruguglio: {
+        name: "MamaBruguglio",
+        category: "timed",
+        window: { "start": 0, "end": 30 }
+    },
+    red_handed: {
+        name: "Red Handed",
+        category: "timed",
+        window: { "start": 0, "end": 30 }
+    },
+    via_maris_route: {
+        name: "ViaMarisRoute",
+        category: "timed",
+        window: { "start": 0, "end": 30 }
+    },
 
-    {"name": "Eat My Shit", "category": "timed", "window": {"start": 15, "end": 30}},
-    {"name": "Building A Future", "category": "timed", "window": {"start": 15, "end": 30}},
-    {"name": "Overnight Success", "category": "timed", "window": {"start": 15, "end": 30}},
+    eat_my_shit: {
+        name: "Eat My Shit",
+        category: "timed",
+        window: { "start": 15, "end": 30 }
+    },
+    building_a_future: {
+        name: "Building A Future",
+        category: "timed",
+        window: { "start": 15, "end": 30 }
+    },
+    overnight_success: {
+        name: "Overnight Success",
+        category: "timed",
+        window: { "start": 15, "end": 30 }
+    },
 
-    {"name": "Bizzare Propagation", "category": "timed", "window": {"start": 30, "end": 45}},
-    {"name": "Crystal Guild", "category": "timed", "window": {"start": 30, "end": 45}},
-    {"name": "I Am Here", "category": "timed", "window": {"start": 30, "end": 45}},
-    {"name": "Keep Sake", "category": "timed", "window": {"start": 30, "end": 45}},
-    {"name": "Shelter", "category": "timed", "window": {"start": 30, "end": 45}},
-    {"name": "You There", "category": "timed", "window": {"start": 30, "end": 45}},
+    bizzare_propagation: {
+        name: "Bizzare Propagation",
+        category: "timed",
+        window: { "start": 30, "end": 45 }
+    },
+    crystal_guild: {
+        name: "Crystal Guild",
+        category: "timed",
+        window: { "start": 30, "end": 45 }
+    },
+    i_am_here: {
+        name: "I Am Here",
+        category: "timed",
+        window: { "start": 30, "end": 45 }
+    },
+    keep_sake: {
+        name: "Keep Sake",
+        category: "timed",
+        window: { "start": 30, "end": 45 }
+    },
+    shelter: {
+        name: "Shelter",
+        category: "timed",
+        window: { "start": 30, "end": 45 }
+    },
+    you_there: {
+        name: "You There",
+        category: "timed",
+        window: { "start": 30, "end": 45 }
+    },
 
-    {"name": "Chevron", "category": "timed", "window": {"start": 30, "end": 0}},
-    {"name": "finalStanding", "category": "timed", "window": {"start": 30, "end": 0}},
-    {"name": "Lab Monkey", "category": "timed", "window": {"start": 30, "end": 0}},
-    {"name": "The Grey", "category": "timed", "window": {"start": 30, "end": 0}},
+    chevron: {
+        name: "Chevron",
+        category: "timed",
+        window: { "start": 30, "end": 0 }
+    },
+    final_standing: {
+        name: "finalStanding",
+        category: "timed",
+        window: { "start": 30, "end": 0 }
+    },
+    lab_monkey: {
+        name: "Lab Monkey",
+        category: "timed",
+        window: { "start": 30, "end": 0 }
+    },
+    the_grey: {
+        name: "The Grey",
+        category: "timed",
+        window: { "start": 30, "end": 0 }
+    },
 
-    {"name": "The Hall", "category": "timed", "window": {"start": 45, "end": 0}}
-]
+    the_hall: {
+        name: "The Hall",
+        category: "timed",
+        window: { "start": 45, "end": 0 }
+    }
+}

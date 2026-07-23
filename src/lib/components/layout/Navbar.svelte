@@ -1,27 +1,28 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	
+	interface link {
+		label: string
+		href: string
+	}
 
-	const links = [
-		{
-			label: 'Scrolls',
-			href: '/barony/scrolls'
-		},
-		{
-			label: 'Dungeon Map',
-			href: '/barony/progression'
-		},
-		{
-			label: 'Websites',
-			href: '/wttg3/sites'
-		}
-	];
+	interface Props {
+		title: string
+		links: link[]
+	}
+	
+	let {
+		title,
+		links
+	}: Props = $props();
+
 </script>
 
 <nav
 	class="flex h-14 items-center border-b border-neutral-800 bg-neutral-950 px-4"
 >
 	<div class="mr-8 text-sm font-semibold text-neutral-100">
-		Barony Tools
+		{title}
 	</div>
 
 	<div class="flex items-center gap-2">

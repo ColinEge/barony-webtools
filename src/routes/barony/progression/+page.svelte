@@ -1,7 +1,6 @@
 <script lang="ts">
-	import DungeonMap from '$lib/components/progression/DungeonMap.svelte';
-	import ProgressionMap from '$lib/components/progression/ProgressionMap.svelte';
-	import { DUNGEON_GRAPH } from '$lib/data/dungeon-progression';
+	import ProgressionMap from '$lib/games/barony/components/progression/ProgressionMap.svelte';
+	import { DUNGEON_GRAPH } from '$lib/games/barony/data/dungeon-progression';
 </script>
 
 <div class="flex h-full w-full flex-col overflow-y-auto p-4">
@@ -9,7 +8,6 @@
 		Dungeon Progression
 	</h1>
 
-	<!-- <DungeonMap graph={DUNGEON_GRAPH} /> -->
 	<div class="min-h-0 w-full flex-1">
 		<ProgressionMap graph={DUNGEON_GRAPH} />
 	</div>

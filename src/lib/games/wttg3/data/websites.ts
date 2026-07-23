@@ -1,23 +1,23 @@
 import type { Website } from "$lib/games/wttg3/models/website";
 
 export const SITES: Record<string, Website> = {
-    blushing_brides: {
+    blushingbrides: {
         name: "Blushing Brides",
         category: "always"
     },
-    cavity_lease: {
+    cavitylease: {
         name: "Cavity Lease",
         category: "always"
     },
-    crisis_calls: {
+    crisiscalls: {
         name: "Crisis Calls",
         category: "always"
     },
-    doctor_murder: {
+    doctormurder: {
         name: "Doctor Murder",
         category: "always"
     },
-    dont_waste_it: {
+    dontwasteit: {
         name: "Dont Waste It",
         category: "always"
     },
@@ -29,15 +29,15 @@ export const SITES: Record<string, Website> = {
         name: "Encrave",
         category: "always"
     },
-    forever_friend: {
+    foreverfriend: {
         name: "Forever Friend",
         category: "always"
     },
-    jakobs_sink: {
+    jakobssink: {
         name: "Jakobs Sink",
         category: "always"
     },
-    lost_tapes: {
+    losttapes: {
         name: "LostTapes",
         category: "always"
     },
@@ -45,47 +45,47 @@ export const SITES: Record<string, Website> = {
         name: "Oneless",
         category: "always"
     },
-    prohibited_stockpile: {
+    prohibitedstockpile: {
         name: "Prohibited Stockpile",
         category: "always"
     },
-    red_triangle: {
+    redtriangle: {
         name: "Red Triangle",
         category: "always"
     },
-    ring_ring: {
+    ringring: {
         name: "Ring Ring",
         category: "always"
     },
-    symphoros_chosen: {
+    symphoroschosen: {
         name: "Symphoros Chosen",
         category: "always"
     },
-    synapse_decay: {
+    synapsedecay: {
         name: "Synapse Decay",
         category: "always"
     },
-    tango_down: {
+    tangodown: {
         name: "Tango Down",
         category: "always"
     },
-    thanks_for_visiting: {
+    thanksforvisting: {
         name: "Thanks For Visiting!",
         category: "always"
     },
-    the_hole: {
+    thehole: {
         name: "The Hole",
         category: "always"
     },
-    the_light_within: {
+    thelightwithin: {
         name: "The Light Within",
         category: "always"
     },
-    the_loogaroo: {
+    theloogaroo: {
         name: "The Loogaroo",
         category: "always"
     },
-    time_sharing: {
+    timesharing: {
         name: "Time Sharing",
         category: "always"
     },
@@ -97,125 +97,125 @@ export const SITES: Record<string, Website> = {
         name: "VoluVision",
         category: "always"
     },
-    world_wide_workers: {
+    worldwideworkers: {
         name: "World Wide Workers",
         category: "always"
     },
-    the_bomb_maker: {
+    thebombmaker: {
         name: "The Bomb Maker",
         category: "always"
     },
 
-    dusk_haven: {
+    duskhaven: {
         name: "Dusk Haven",
         category: "never"
     },
-    evidence_locker: {
+    evidencelocker: {
         name: "Evidence Locker",
         category: "never"
     },
-    iron_mask: {
+    ironmask: {
         name: "Iron Mask",
         category: "never"
     },
-    is_evil: {
+    isevil: {
         name: "Is Evil",
         category: "never"
     },
-    pale_market: {
+    palemarket: {
         name: "Pale Market",
         category: "never"
     },
-    roses_destruction: {
+    rosesdestruction: {
         name: "Roses Destruction",
         category: "never"
     },
-    cryptic_forge: {
+    crypticforge: {
         name: "Cryptic Forge",
         category: "never"
     },
-    hidden_pleasures: {
+    hiddenpleasures: {
         name: "Hidden Pleasures",
         category: "never"
     },
 
-    abyssal_chat: {
+    abyssalchat: {
         name: "Abyssal Chat",
         category: "never"
     },
-    bathroom_cams: {
+    bathroomcams: {
         name: "Bathroom Cams",
         category: "never"
     },
-    bone_altar: {
+    bonealtar: {
         name: "Bone Altar",
         category: "never"
     },
-    carrion_stage: {
+    carrionstage: {
         name: "Carrion Stage",
         category: "never"
     },
-    corpses_for: {
+    corpsesfor: {
         name: "Corpses For Sale",
         category: "never"
     },
-    crimson_bazaar: {
+    crimsonbazaar: {
         name: "Crimson Bazaar",
         category: "never"
     },
-    crimson_relay: {
+    crimsonrelay: {
         name: "Crimson Relay",
         category: "never"
     },
-    dread_signal: {
+    dreadsignal: {
         name: "Dread Signal",
         category: "never"
     },
-    drone_spy: {
+    dronespy: {
         name: "Drone Spy",
         category: "never"
     },
-    echo_vault: {
+    echovault: {
         name: "Echo Vault",
         category: "never"
     },
-    eternal_loop: {
+    eternalloop: {
         name: "Eternal Loop",
         category: "never"
     },
-    father_donald: {
+    fatherdonald: {
         name: "Father Donald",
         category: "never"
     },
-    flicker_stream: {
+    flickerstream: {
         name: "Flicker Stream",
         category: "never"
     },
-    foot_doctor: {
+    footdoctor: {
         name: "Foot Doctor",
         category: "never"
     },
-    forgive_me: {
+    forgiveme: {
         name: "Forgive Me",
         category: "never"
     },
-    ghost_proxy: {
+    ghostproxy: {
         name: "Ghost Proxy",
         category: "never"
     },
-    gloom_archive: {
+    gloomarchive: {
         name: "Gloom Archive",
         category: "never"
     },
-    hollow_key: {
+    hollowkey: {
         name: "Hollow Key",
         category: "never"
     },
-    iron_ledger: {
+    ironledger: {
         name: "Iron Ledger",
         category: "never"
     },
-    lost_signals: {
+    lostsignals: {
         name: "Lost Signals",
         category: "never"
     },
@@ -223,156 +223,156 @@ export const SITES: Record<string, Website> = {
         name: "Mutilation",
         category: "never"
     },
-    my_gut: {
+    mygut: {
         name: "My Gut",
         category: "never"
     },
-    noir_gallery: {
+    noirgallery: {
         name: "Noir Gallery",
         category: "never"
     },
-    obsidian_trade: {
+    obsidiantrade: {
         name: "Obsidian Trade",
         category: "never"
     },
-    red_veil: {
+    redveil: {
         name: "Red Veil",
         category: "never"
     },
-    rust_network: {
+    rustnetwork: {
         name: "Rust Network",
         category: "never"
     },
-    secure_drop: {
+    securedrop: {
         name: "Secure Drop",
         category: "never"
     },
-    shade_broker: {
+    shadebroker: {
         name: "Shade Broker",
         category: "never"
     },
-    shadow_cache: {
+    shadowcache: {
         name: "Shadow Cache",
         category: "never"
     },
-    specter_hub: {
+    specterhub: {
         name: "Specter Hub",
         category: "never"
     },
-    the_butcher: {
+    thebutcher: {
         name: "The Butcher",
         category: "never"
     },
-    the_black_waves: {
+    theblackwaves: {
         name: "The Black Waves",
         category: "never"
     },
-    the_end_of_ny: {
+    theendofny: {
         name: "The End Of NY",
         category: "never"
     },
-    veiled_eyes: {
+    veiledeyes: {
         name: "Veiled Eyes",
         category: "never"
     },
-    void_library: {
+    voidlibrary: {
         name: "Void Library",
         category: "never"
     },
-    wraith_cam: {
+    wraithcam: {
         name: "Wraith Cam",
         category: "never"
     },
 
-    find_love: {
+    findlove: {
         name: "FindLove",
         category: "timed",
         window: { "start": 0, "end": 15 }
     },
-    forsaken_gifts: {
+    forsakengifts: {
         name: "Forsaken Gifts",
         category: "timed",
         window: { "start": 0, "end": 15 }
     },
-    mors_n_more_market: {
+    morsnmoremarket: {
         name: "Mors N More Market",
         category: "timed",
         window: { "start": 0, "end": 15 }
     },
-    order_of_nine: {
+    orderofnine: {
         name: "Order Of Nine",
         category: "timed",
         window: { "start": 0, "end": 15 }
     },
-    the_prey: {
+    theprey: {
         name: "The Prey",
         category: "timed",
         window: { "start": 0, "end": 15 }
     },
 
-    black_hat_post: {
+    blackhatpost: {
         name: "Blackhat Post",
         category: "timed",
         window: { "start": 0, "end": 30 }
     },
-    drug_tickets: {
+    drugtickets: {
         name: "Drug Tickets",
         category: "timed",
         window: { "start": 0, "end": 30 }
     },
-    kill_for_me: {
+    killforme: {
         name: "Kill For Me",
         category: "timed",
         window: { "start": 0, "end": 30 }
     },
-    mama_bruguglio: {
+    mamabruguglio: {
         name: "MamaBruguglio",
         category: "timed",
         window: { "start": 0, "end": 30 }
     },
-    red_handed: {
+    redhanded: {
         name: "Red Handed",
         category: "timed",
         window: { "start": 0, "end": 30 }
     },
-    via_maris_route: {
+    viamarisroute: {
         name: "ViaMarisRoute",
         category: "timed",
         window: { "start": 0, "end": 30 }
     },
 
-    eat_my_shit: {
+    ems: {
         name: "Eat My Shit",
         category: "timed",
         window: { "start": 15, "end": 30 }
     },
-    building_a_future: {
+    buildingafuture: {
         name: "Building A Future",
         category: "timed",
         window: { "start": 15, "end": 30 }
     },
-    overnight_success: {
+    overnightsuccess: {
         name: "Overnight Success",
         category: "timed",
         window: { "start": 15, "end": 30 }
     },
 
-    bizzare_propagation: {
+    bizarrepropagation: {
         name: "Bizzare Propagation",
         category: "timed",
         window: { "start": 30, "end": 45 }
     },
-    crystal_guild: {
+    crystalguild: {
         name: "Crystal Guild",
         category: "timed",
         window: { "start": 30, "end": 45 }
     },
-    i_am_here: {
+    iamhere: {
         name: "I Am Here",
         category: "timed",
         window: { "start": 30, "end": 45 }
     },
-    keep_sake: {
+    keepsake: {
         name: "Keep Sake",
         category: "timed",
         window: { "start": 30, "end": 45 }
@@ -382,7 +382,7 @@ export const SITES: Record<string, Website> = {
         category: "timed",
         window: { "start": 30, "end": 45 }
     },
-    you_there: {
+    youthere: {
         name: "You There",
         category: "timed",
         window: { "start": 30, "end": 45 }
@@ -393,23 +393,23 @@ export const SITES: Record<string, Website> = {
         category: "timed",
         window: { "start": 30, "end": 0 }
     },
-    final_standing: {
+    finalstanding: {
         name: "finalStanding",
         category: "timed",
         window: { "start": 30, "end": 0 }
     },
-    lab_monkey: {
+    labmonkey: {
         name: "Lab Monkey",
         category: "timed",
         window: { "start": 30, "end": 0 }
     },
-    the_grey: {
+    TheGrey: {
         name: "The Grey",
         category: "timed",
         window: { "start": 30, "end": 0 }
     },
 
-    the_hall: {
+    thehall: {
         name: "The Hall",
         category: "timed",
         window: { "start": 45, "end": 0 }

@@ -17,10 +17,10 @@ export const PAGES: Record<string, SiteImages> = {
     },
     "TheGrey": {
         "pages": [
+            "index",
             "centrum",
             "deddd",
             "inanis",
-            "index",
             "interius",
             "latus"
         ]
@@ -67,8 +67,8 @@ export const PAGES: Record<string, SiteImages> = {
     },
     "crisiscalls": {
         "pages": [
-            "account",
             "index",
+            "account",
             "resetpassword"
         ]
     },
@@ -85,8 +85,8 @@ export const PAGES: Record<string, SiteImages> = {
     },
     "dontwasteit": {
         "pages": [
-            "holdit",
             "index",
+            "holdit",
             "no",
             "yes"
         ]
@@ -98,24 +98,24 @@ export const PAGES: Record<string, SiteImages> = {
     },
     "drugtickets": {
         "pages": [
+            "index",
             "checkout",
-            "error",
-            "index"
+            "error"
         ]
     },
     "ems": {
         "pages": [
-            "faq",
             "index",
+            "faq",
             "questions",
             "secret"
         ]
     },
     "encrave": {
         "pages": [
+            "index",
             "evident",
-            "gateopen",
-            "index"
+            "gateopen"
         ]
     },
     "finalstanding": {
@@ -136,8 +136,8 @@ export const PAGES: Record<string, SiteImages> = {
     },
     "forsakengifts": {
         "pages": [
-            "gifts",
             "index",
+            "gifts",
             "order"
         ]
     },
@@ -153,8 +153,8 @@ export const PAGES: Record<string, SiteImages> = {
     },
     "keepsake": {
         "pages": [
-            "contact",
             "index",
+            "contact",
             "thesearch"
         ]
     },
@@ -167,9 +167,9 @@ export const PAGES: Record<string, SiteImages> = {
     },
     "labmonkey": {
         "pages": [
+            "index",
             "catalog",
             "error",
-            "index",
             "sign-in"
         ]
     },
@@ -233,8 +233,8 @@ export const PAGES: Record<string, SiteImages> = {
     },
     "ringring": {
         "pages": [
-            "answer",
-            "index"
+            "index",
+            "answer"
         ]
     },
     "seized": {
@@ -244,9 +244,9 @@ export const PAGES: Record<string, SiteImages> = {
     },
     "shelter": {
         "pages": [
+            "index",
             "donate",
-            "events",
-            "index"
+            "events"
         ]
     },
     "symphoroschosen": {
@@ -258,8 +258,8 @@ export const PAGES: Record<string, SiteImages> = {
     },
     "synapsedecay": {
         "pages": [
-            "getmoney",
             "index",
+            "getmoney",
             "myfriends",
             "occasionally",
             "succulentmeal"
@@ -267,19 +267,19 @@ export const PAGES: Record<string, SiteImages> = {
     },
     "tangodown": {
         "pages": [
-            "hire",
             "index",
+            "hire",
             "payment",
             "results"
         ]
     },
     "thanksforvisting": {
         "pages": [
+            "index",
             "bar",
             "connected",
             "creepy",
             "fakemain",
-            "index",
             "jolly",
             "plug",
             "portal",
@@ -361,8 +361,8 @@ export const PAGES: Record<string, SiteImages> = {
     },
     "worldwideworkers": {
         "pages": [
-            "about",
             "index",
+            "about",
             "submit"
         ]
     },

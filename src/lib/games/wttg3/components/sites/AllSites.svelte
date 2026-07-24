@@ -5,6 +5,7 @@
 	import { SITES } from '$lib/games/wttg3/data/websites';
 	import { PAGES } from '$lib/games/wttg3/data/pages';
 	import type { WebsiteState } from '$lib/games/wttg3/models/website';
+	import { sortSites, type SortMode } from '../../helpers/siteQueries';
 
 	// Site list
 	const sites = $derived(
@@ -42,27 +43,7 @@
 		label: string;
 	}[];
 
-	type SortMode = 'name' | 'time';
 	let sortMode: SortMode = $state('name');
-	function sortSites(items: WebsiteState[], mode: SortMode): WebsiteState[] {
-		return [...items].sort((a, b) => {
-			if (mode === 'name') {
-				return a.name.localeCompare(b.name);
-			}
-			const aStart = a.window?.start ?? (a.category === 'always' ? -1 : 999);
-			const bStart = b.window?.start ?? (b.category === 'always' ? -1 : 999);
-			if (aStart !== bStart) {
-				return aStart - bStart;
-			}
-			const aEnd = a.window?.end ?? -1;
-			const bEnd = b.window?.end ?? -1;
-			if (aEnd !== bEnd) {
-				return aEnd - bEnd;
-			}
-			return a.name.localeCompare(b.name);
-		});
-	}
-
 	const filteredSites = $derived(sites.filter((site) => categories.includes(site.category)));
 	const sortedSites = $derived(sortSites(filteredSites, sortMode));
 </script>

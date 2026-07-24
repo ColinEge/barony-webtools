@@ -10,7 +10,7 @@
 	import WikiCard from '$lib/games/wttg3/components/wikis/WikiCard.svelte';
 	import { createSessionActions } from '$lib/games/wttg3/stores/websites/sessionActions.svelte';
 	import AllSites from '$lib/games/wttg3/components/sites/AllSites.svelte';
-	import { getUnusedSiteIds, getWikiState } from '$lib/games/wttg3/helpers/sessionQueries';
+	import { getUnusedSites, getWikiState } from '$lib/games/wttg3/helpers/sessionQueries';
 	import { SITES } from '$lib/games/wttg3/data/websites';
 
 	// Sessions
@@ -28,10 +28,7 @@
 	const wikiStates = $derived(context.session?.data.wikis.map(getWikiState).filter(Boolean) ?? []);
 	const unusedSites = $derived(
 		context.session
-			? Array.from(getUnusedSiteIds(context.session.data)).map((id) => ({
-					id,
-					...SITES[id]
-				}))
+			? getUnusedSites(context.session.data).sort((a, b) => a.name.localeCompare(b.name))
 			: []
 	);
 </script>
@@ -61,6 +58,7 @@
 					onPurchase={() => actions.purchaseWiki(wiki.id)}
 					onAddSite={(id) => actions.addSite(wiki.id, id)}
 					onRemoveSite={(id) => actions.removeSite(wiki.id, id)}
+					onClearSite={(id, cleared) => actions.clearSite(id, cleared)}
 				/>
 			{/if}
 		{/each}

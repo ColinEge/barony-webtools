@@ -2,17 +2,20 @@
 	import type { SiteImages } from '$lib/games/wttg3/models/pages';
 	import type { TimeWindow, WebsiteState } from '../../models/website';
 	import SitePageList from './SitePageList.svelte';
+	import type { Snippet } from 'svelte';
 
 	let {
 		site,
 		images,
 		expanded = false,
-		onSelect
+		onSelect,
+		actions
 	}: {
 		site: WebsiteState;
 		images?: SiteImages;
 		expanded?: boolean;
 		onSelect: () => void;
+		actions?: Snippet;
 	} = $props();
 
 	function formatTime(window?: TimeWindow) {
@@ -20,7 +23,7 @@
 			return '';
 		}
 
-		return `:${String(window.start).padStart(2, '0')} – :${String(window.end).padStart(2, '0')}`;
+		return `:${String(window.start).padStart(2, '0')} - :${String(window.end).padStart(2, '0')}`;
 	}
 </script>
 
@@ -74,9 +77,15 @@
 		</div>
 
 		{#if images}
-			<p class="mt-3 text-sm text-neutral-500">
-				{images.pages.length} page{images.pages.length === 1 ? '' : 's'}
-			</p>
+			<div class="mt-3 flex items-center justify-between text-sm text-neutral-500">
+				<p>
+					{images.pages.length} page{images.pages.length === 1 ? '' : 's'}
+				</p>
+
+				<div onclick={(e) => e.stopPropagation()}>
+					{@render actions?.()}
+				</div>
+			</div>
 		{/if}
 	</button>
 

@@ -68,6 +68,7 @@ export function createSessionActions(
 			) {
 				wiki.sites.push({
 					id: siteId,
+					cleared: false,
 				});
 			}
 		});
@@ -93,10 +94,31 @@ export function createSessionActions(
 		});
 	}
 
+	function clearSite(
+		siteId: string,
+		cleared: boolean
+	) {
+		updateSession(data => {
+			const wiki = data.wikis.find(
+				w => w.sites.some(site => site.id === siteId)
+			);
+
+			if (!wiki) {
+				return;
+			}
+
+			const site = wiki.sites.find(site => site.id === siteId);
+			if (site) {
+				site.cleared = cleared;
+			}
+		});
+	}
+
 	return {
 		updateSession,
 		purchaseWiki,
 		addSite,
-		removeSite
+		removeSite,
+		clearSite
 	};
 }

@@ -1,5 +1,7 @@
 // Static data models for hydrating
 
+import type { WebsiteProgress } from "./session";
+
 export type WebsiteCategory = 'always' | 'never' | 'timed';
 
 export interface Website {
@@ -15,6 +17,4 @@ export interface TimeWindow {
 
 // ui state
 
-export interface WebsiteState extends Website {
-	id: string;
-}
+export interface WebsiteState extends Website, WebsiteProgress {}

@@ -7,6 +7,7 @@ export interface Session {
 
 export interface WebsiteProgress {
 	id: string;
+	cleared: boolean;
 }
 
 export interface WikiProgress {

@@ -138,6 +138,10 @@ export const SITES: Record<string, Website> = {
         name: "Hidden Pleasures",
         category: "never"
     },
+    deepjournal: {
+        name: "Deep Journal",
+        category: "never"
+    },
 
     abyssalchat: {
         name: "Abyssal Chat",

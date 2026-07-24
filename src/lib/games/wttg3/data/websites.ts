@@ -287,6 +287,10 @@ export const SITES: Record<string, Website> = {
         name: "Wraith Cam",
         category: "never"
     },
+    silentauction: {
+        name: "Silent Auction",
+        category: "never"
+    },
 
     findlove: {
         name: "FindLove",

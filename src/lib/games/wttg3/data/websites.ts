@@ -291,6 +291,10 @@ export const SITES: Record<string, Website> = {
         name: "Silent Auction",
         category: "never"
     },
+    mybackroom: {
+        name: "My Backroom",
+        category: "never"
+    },
 
     findlove: {
         name: "FindLove",
@@ -366,7 +370,7 @@ export const SITES: Record<string, Website> = {
     },
 
     bizarrepropagation: {
-        name: "Bizzare Propagation",
+        name: "Bizarre Propagation",
         category: "timed",
         window: { "start": 30, "end": 45 }
     },

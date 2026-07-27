@@ -299,6 +299,10 @@ export const SITES: Record<string, Website> = {
         name: "Phantom Lot",
         category: "never"
     },
+    murklair: {
+        name: "Murk Lair",
+        category: "never"
+    },
 
     findlove: {
         name: "FindLove",

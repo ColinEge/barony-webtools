@@ -1,12 +1,12 @@
-<script lang="ts" generics="T extends string">
-	import Button from './Button.svelte';
+<script lang="ts" generics="T extends string | number">
+	import Button from '$lib/components/ui/Button.svelte';
 
-	interface Option<T extends string> {
+	interface Option<T extends string | number> {
 		value: T;
 		label: string;
 	}
 
-	interface Props<T extends string> {
+	interface Props<T extends string | number> {
 		value: T;
 		options: Option<T>[];
 		class?: string;

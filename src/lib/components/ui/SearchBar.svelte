@@ -1,7 +1,7 @@
 <script lang="ts">
 	import MagnifyingGlass from 'phosphor-svelte/lib/MagnifyingGlassIcon';
 	import X from 'phosphor-svelte/lib/XIcon';
-	import Button from './Button.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
 
 	interface Props {
 		value?: string;

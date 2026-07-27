@@ -1,4 +1,4 @@
-import type { Wiki } from "../models/wiki";
+import type { Wiki } from "$lib/games/wttg3/models/wiki";
 
 export const WIKI_MAX_PAGES = 25;
 

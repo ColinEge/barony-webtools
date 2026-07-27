@@ -1,8 +1,8 @@
-import { SITES } from '../data/websites';
-import { WIKIS } from '../data/wikis';
-import type { Session, WebsiteProgress, WikiProgress } from '../models/session';
-import type { WebsiteState } from '../models/website';
-import type { WikiState } from '../models/wiki';
+import { SITES } from '$lib/games/wttg3/data/websites';
+import { WIKIS } from '$lib/games/wttg3/data/wikis';
+import type { Session, WebsiteProgress, WikiProgress } from '$lib/games/wttg3/models/session';
+import type { WebsiteState } from '$lib/games/wttg3/models/website';
+import type { WikiState } from '$lib/games/wttg3/models/wiki';
 
 export function getAssignedSiteIds(
 	session: Session

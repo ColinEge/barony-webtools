@@ -1,6 +1,6 @@
 <script lang="ts" generics="T">
 	import CaretDown from 'phosphor-svelte/lib/CaretDownIcon';
-	import Button from './Button.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
 
 	interface Option<T> {
 		value: T;

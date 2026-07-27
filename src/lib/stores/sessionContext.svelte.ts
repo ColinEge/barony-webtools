@@ -1,5 +1,5 @@
 import type { GameKey } from '$lib/data/session-keys';
-import { sessionSelection } from './sessionSelection.svelte';
+import { sessionSelection } from '$lib/stores/sessionSelection.svelte';
 import type { GameSession } from '$lib/models/session';
 
 export function sessionContext<T>(

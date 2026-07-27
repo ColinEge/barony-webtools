@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { DungeonGraph } from '$lib/games/barony/models/progression';
-	import DungeonNodeView from './DungeonNode.svelte';
+	import DungeonNodeView from '$lib/games/barony/components/progression/DungeonNode.svelte';
 
 	let { graph }: { graph: DungeonGraph } = $props();
 

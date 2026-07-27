@@ -1,6 +1,6 @@
-import type { SiteImages } from "../models/pages";
+import type { SiteImages } from "$lib/games/wttg3/models/pages";
 
-const BASE = "wttg"
+const BASE = "wttg/screenshots";
 
 export function siteImageUrl(
 	siteId: string,

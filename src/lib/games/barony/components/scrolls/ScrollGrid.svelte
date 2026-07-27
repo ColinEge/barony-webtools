@@ -5,7 +5,7 @@
 	import SearchBar from '$lib/components/ui/SearchBar.svelte';
 	import SegmentedControl from '$lib/components/ui/SegmentedControl.svelte';
 
-	import ScrollCard from './ScrollCard.svelte';
+	import ScrollCard from '$lib/games/barony/components/scrolls/ScrollCard.svelte';
 
 	import {
 		SCROLL_FILTER_OPTIONS,

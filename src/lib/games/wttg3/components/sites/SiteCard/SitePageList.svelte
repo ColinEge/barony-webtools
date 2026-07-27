@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { siteImageUrl } from "../../data/pages";
-	import type { SiteImages } from "../../models/pages";
+	import { siteImageUrl } from '$lib/games/wttg3/data/pages';
+	import type { SiteImages } from '$lib/games/wttg3/models/pages';
 
 	let {
 		siteId,

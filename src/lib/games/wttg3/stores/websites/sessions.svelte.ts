@@ -1,7 +1,7 @@
 import type { Session } from '$lib/games/wttg3/models/session';
 import { sessionStore } from '$lib/stores/sessionStore.svelte';
-import { MINERS } from '../../data/miners';
-import { WIKIS } from '../../data/wikis';
+import { MINERS } from '$lib/games/wttg3/data/miners';
+import { WIKIS } from '$lib/games/wttg3/data/wikis';
 
 function createData(): Session {
 	return {

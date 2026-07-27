@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { DungeonNode } from '$lib/games/barony/models/progression';
-	import DungeonItemIcon from './DungeonItemIcon.svelte';
+	import DungeonItemIcon from '$lib/games/barony/components/progression/DungeonItemIcon.svelte';
 	import { getItem } from '$lib/games/barony/util/get-item';
 
 	let {

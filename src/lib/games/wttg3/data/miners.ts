@@ -1,4 +1,4 @@
-import type { Miner } from "../models/miner";
+import type { Miner } from "$lib/games/wttg3/models/miner";
 
 export const MINERS: Array<Miner> = [
     {tier: 1, name: "WebTyk", value: "1.84"},

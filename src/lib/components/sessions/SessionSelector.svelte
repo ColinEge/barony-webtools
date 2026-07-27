@@ -2,8 +2,8 @@
 	import CaretDown from 'phosphor-svelte/lib/CaretDownIcon';
 	import { clickOutside } from '$lib/actions/clickOutside';
 
-	import SessionList from './SessionList.svelte';
-	import CreateSessionForm from './CreateSessionForm.svelte';
+	import SessionList from '$lib/components/sessions/SessionList.svelte';
+	import CreateSessionForm from '$lib/components/sessions/CreateSessionForm.svelte';
 
 	import Button from '$lib/components/ui/Button.svelte';
 	import Input from '$lib/components/ui/Input.svelte';

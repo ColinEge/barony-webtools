@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { DungeonGraph } from '$lib/games/barony/models/progression';
-	import VerticalProgressionMap from './VerticalProgressionMap.svelte';
-	import HorizontalProgressionMap from './HorizontalProgressionMap.svelte';
+	import VerticalProgressionMap from '$lib/games/barony/components/progression/VerticalProgressionMap.svelte';
+	import HorizontalProgressionMap from '$lib/games/barony/components/progression/HorizontalProgressionMap.svelte';
 
 	let { graph }: { graph: DungeonGraph } = $props();
 

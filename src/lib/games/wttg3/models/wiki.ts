@@ -1,6 +1,6 @@
 // Static data models for hydrating
 
-import type { WebsiteState } from "./website";
+import type { WebsiteState } from "$lib/games/wttg3/models/website";
 
 export interface Wiki {
   id: number;

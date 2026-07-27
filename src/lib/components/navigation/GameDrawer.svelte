@@ -3,8 +3,8 @@
 	import { goto } from '$app/navigation';
 	import List from 'phosphor-svelte/lib/ListIcon';
 	import X from 'phosphor-svelte/lib/XIcon';
-	import SelectableListItem from '../ui/SelectableListItem.svelte';
-	import Button from '../ui/Button.svelte';
+	import SelectableListItem from '$lib/components/ui/SelectableListItem.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
 
 	let {
 		tools,

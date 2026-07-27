@@ -7,11 +7,12 @@
 	import { decodeBase64Url, encodeBase64Url } from '$lib/share/codec';
 
 	import { WTTG3_KEY } from '$lib/data/session-keys';
-	import WikiCard from '$lib/games/wttg3/components/wikis/WikiCard.svelte';
 	import { createSessionActions } from '$lib/games/wttg3/stores/websites/sessionActions.svelte';
 	import AllSites from '$lib/games/wttg3/components/sites/AllSites.svelte';
 	import { getUnusedSites, getWikiState } from '$lib/games/wttg3/helpers/sessionQueries';
-	import { SITES } from '$lib/games/wttg3/data/websites';
+	import SegmentedControl from '$lib/components/ui/SegmentedControl.svelte';
+	import WikiCard from '$lib/games/wttg3/components/wikis/WikiCard.svelte';
+	import type { WikiState } from '$lib/games/wttg3/models/wiki';
 
 	// Sessions
 	const context = sessionContext(WTTG3_KEY, sessions);
@@ -25,12 +26,33 @@
 	});
 
 	// Wikis
-	const wikiStates = $derived(context.session?.data.wikis.map(getWikiState).filter(Boolean) ?? []);
+	const wikiStates = $derived(
+		context.session?.data.wikis
+			.map(getWikiState)
+			.filter((wiki): wiki is WikiState => wiki !== null) ?? []
+	);
 	const unusedSites = $derived(
 		context.session
 			? getUnusedSites(context.session.data).sort((a, b) => a.name.localeCompare(b.name))
 			: []
 	);
+
+	function onAddSites(wikiId: number, siteIds: string[]) {
+		if (!context.session) return;
+
+		for (const siteId of siteIds) {
+			actions.addSite(wikiId, siteId);
+		}
+	}
+
+	let selectedWikiId = $state<number>(1);
+	const wikiOptions = $derived(
+		wikiStates.map((wiki) => ({
+			value: wiki.id,
+			label: wiki.name
+		}))
+	);
+	const selectedWiki = $derived(wikiStates.find((wiki) => wiki.id === selectedWikiId));
 </script>
 
 {#snippet sessionActions()}
@@ -50,18 +72,19 @@
 
 <div class="space-y-2 mt-2 mx-2">
 	{#if context.session !== null}
-		{#each wikiStates as wiki}
-			{#if wiki}
-				<WikiCard
-					{wiki}
-					sites={unusedSites}
-					onPurchase={() => actions.purchaseWiki(wiki.id)}
-					onAddSite={(id) => actions.addSite(wiki.id, id)}
-					onRemoveSite={(id) => actions.removeSite(wiki.id, id)}
-					onClearSite={(id, cleared) => actions.clearSite(id, cleared)}
-				/>
-			{/if}
-		{/each}
+		<SegmentedControl bind:value={selectedWikiId} options={wikiOptions} />
+
+		{#if selectedWiki}
+			<WikiCard
+				wiki={selectedWiki}
+				sites={unusedSites}
+				onPurchase={() => actions.purchaseWiki(selectedWiki.id)}
+				onAddSites={(siteIds) => onAddSites(selectedWiki.id, siteIds)}
+				onRemoveSite={(id) => actions.removeSite(selectedWiki.id, id)}
+				onClearSite={(id, cleared) => actions.clearSite(selectedWiki.id, id, cleared)}
+				onUpdateSite={(id, update) => actions.updateSite(selectedWiki.id, id, update)}
+			/>
+		{/if}
 	{:else}
 		<AllSites />
 	{/if}

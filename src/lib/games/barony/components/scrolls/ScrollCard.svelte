@@ -4,8 +4,8 @@
 		SessionScrollData
 	} from '$lib/games/barony/models/scroll';
 
-	import InscriptionSelect from './InscriptionSelect.svelte';
-	import ScrollDetails from './ScrollDetails.svelte';
+	import InscriptionSelect from '$lib/games/barony/components/scrolls/InscriptionSelect.svelte';
+	import ScrollDetails from '$lib/games/barony/components/scrolls/ScrollDetails.svelte';
 
 	let {
 		scroll,

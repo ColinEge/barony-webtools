@@ -1,29 +1,33 @@
 <script lang="ts">
 	import Button from '$lib/components/ui/Button.svelte';
-	import SiteSelector from '../sites/SiteSelector.svelte';
-	import SiteCard from '../sites/SiteCard.svelte';
-	import { PAGES } from '../../data/pages';
-	import type { WikiState } from '../../models/wiki';
-	import type { WebsiteState } from '../../models/website';
-	import { WIKI_MAX_PAGES } from '../../data/wikis';
+	import { PAGES } from '$lib/games/wttg3/data/pages';
+	import type { WikiState } from '$lib/games/wttg3/models/wiki';
+	import type { WebsiteState } from '$lib/games/wttg3/models/website';
+	import { WIKI_MAX_PAGES } from '$lib/games/wttg3/data/wikis';
 	import SegmentedToggle from '$lib/components/ui/SegmentedToggle.svelte';
-	import { sortSites, type SortMode } from '../../helpers/siteQueries';
+	import { getSiteTags, sortSites, type SortMode } from '$lib/games/wttg3/helpers/siteQueries';
 	import Checkbox from '$lib/components/ui/Checkbox.svelte';
+	import SiteCard from '$lib/games/wttg3/components/sites/SiteCard/SiteCard.svelte';
+	import SitesInput from './SitesInput.svelte';
+	import Tag from '$lib/components/ui/Tag.svelte';
+	import SiteGrid from '../sites/SiteGrid.svelte';
 
 	let {
 		wiki,
 		sites = [],
 		onPurchase,
-		onAddSite,
+		onAddSites,
 		onRemoveSite,
-		onClearSite
+		onClearSite,
+		onUpdateSite
 	}: {
 		wiki: WikiState;
 		sites: WebsiteState[];
 		onPurchase: () => void;
-		onAddSite: (id: string) => void;
+		onAddSites: (siteIds: string[]) => void;
 		onRemoveSite: (id: string) => void;
 		onClearSite: (id: string, cleared: boolean) => void;
+		onUpdateSite: (id: string, update: Partial<WebsiteState>) => void;
 	} = $props();
 
 	const locked = $derived(!wiki.purchased);
@@ -35,7 +39,7 @@
 
 	// Sort and filter
 	type Category = 'always' | 'timed' | 'never';
-	let categories = $state<Category[]>(['always', 'timed', 'never']);
+	let categories = $state<Category[]>(['always', 'timed']);
 	const categoryOptions = [
 		{ value: 'always', label: 'Always' },
 		{ value: 'timed', label: 'Timed' },
@@ -79,8 +83,8 @@
 			</Button>
 		</div>
 	{:else}
+		<SitesInput unusedSites={new Set(sites.map((site) => site.id))} onAdd={onAddSites} />
 		<div class="mt-4 flex flex-wrap items-center gap-3">
-			<SiteSelector selected={wiki.sites} {sites} onAdd={onAddSite} />
 			<select
 				bind:value={sortMode}
 				class="
@@ -112,6 +116,7 @@
 						images={PAGES[selectedSite.id]}
 						expanded
 						onSelect={() => selectSite(selectedSite.id)}
+						onUpdateSite={(update) => onUpdateSite(selectedSite.id, update)}
 					>
 						{#snippet actions()}
 							<Checkbox
@@ -126,23 +131,9 @@
 			{/if}
 		{/if}
 
-		<div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-			{#each sortedSites as site}
-				{#if site}
-					<div>
-						<SiteCard {site} images={PAGES[site.id]} onSelect={() => selectSite(site.id)}>
-							{#snippet actions()}
-								<Checkbox
-									label="Cleared"
-									direction="rtl"
-									checked={site.cleared}
-									onChange={(checked) => onClearSite(site.id, checked)}
-								/>
-							{/snippet}
-						</SiteCard>
-					</div>
-				{/if}
-			{/each}
-		</div>
+		<SiteGrid
+				sites={sortedSites}
+				onSelect={(siteId) => selectSite(siteId)}
+			/>
 	{/if}
 </div>

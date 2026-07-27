@@ -1,5 +1,5 @@
 <script lang="ts" generics="T">
-	import SessionItem from './SessionItem.svelte';
+	import SessionItem from '$lib/components/sessions/SessionItem.svelte';
 	import type { GameSession } from '$lib/models/session';
 
 	let {

@@ -2,7 +2,7 @@
 	import type { Toast } from '$lib/models/toast';
 	import X from 'phosphor-svelte/lib/XIcon';
 	import { getToastState } from '$lib/state/toast-state.svelte';
-	import Button from '../ui/Button.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
 	import { fly, fade } from 'svelte/transition';
 	import { tick } from 'svelte';
 

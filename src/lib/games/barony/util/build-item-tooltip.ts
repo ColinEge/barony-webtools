@@ -1,8 +1,8 @@
-import { itemImage } from './get-item';
 import { UI_ICONS } from '$lib/games/barony/data/ui-icons';
 import type { DungeonItem } from '$lib/games/barony/models/item';
 import type { TooltipData } from '$lib/models/rich-tooltip';
-import { effectIcon } from './get-effect';
+import { itemImage } from '$lib/games/barony/util/get-item';
+import { effectIcon } from '$lib/games/barony/util/get-effect';
 
 export function buildItemTooltip(item: DungeonItem): TooltipData {
     return {

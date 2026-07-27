@@ -1,11 +1,11 @@
 <script lang="ts">
 	import SegmentedToggle from '$lib/components/ui/SegmentedToggle.svelte';
-	import SiteCard from '$lib/games/wttg3/components/sites/SiteCard.svelte';
+	import SiteCard from '$lib/games/wttg3/components/sites/SiteCard/SiteCard.svelte';
 
 	import { SITES } from '$lib/games/wttg3/data/websites';
 	import { PAGES } from '$lib/games/wttg3/data/pages';
 	import type { WebsiteState } from '$lib/games/wttg3/models/website';
-	import { sortSites, type SortMode } from '../../helpers/siteQueries';
+	import { sortSites, type SortMode } from '$lib/games/wttg3/helpers/siteQueries';
 
 	// Site list
 	const sites = $derived(

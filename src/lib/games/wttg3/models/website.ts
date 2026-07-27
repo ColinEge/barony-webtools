@@ -1,6 +1,6 @@
 // Static data models for hydrating
 
-import type { WebsiteProgress } from "./session";
+import type { KeyProgress, WebsiteProgress } from "$lib/games/wttg3/models/session";
 
 export type WebsiteCategory = 'always' | 'never' | 'timed';
 
@@ -13,6 +13,12 @@ export interface Website {
 export interface TimeWindow {
   start: number;
   end: number;
+}
+
+export interface SiteNotes {
+    key?: KeyProgress;
+    annLink?: string;
+    fetchUrl?: string;
 }
 
 // ui state

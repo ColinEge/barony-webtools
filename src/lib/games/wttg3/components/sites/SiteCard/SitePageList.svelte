@@ -1,20 +1,56 @@
 <script lang="ts">
 	import { siteImageUrl } from '$lib/games/wttg3/data/pages';
+	import { parseSiteNotes } from '$lib/games/wttg3/helpers/siteQueries';
 	import type { SiteImages } from '$lib/games/wttg3/models/pages';
 
 	let {
 		siteId,
-		images
+		images,
+		notes = ''
 	}: {
 		siteId: string;
 		images: SiteImages;
+		notes?: string;
 	} = $props();
+
+	const parsedNotes = $derived(parseSiteNotes(notes));
+
+	function getPageUrlFromNotes(page: string): string | null {
+		const annLink = parsedNotes.annLink;
+
+		if (!annLink) {
+			return null;
+		}
+
+		try {
+			const url = new URL(annLink);
+			const pathname = url.pathname;
+			const filename = `${page}.html`;
+
+			if (pathname.endsWith('/')) {
+				url.pathname = `${pathname}${filename}`;
+			} else {
+				const lastSlash = pathname.lastIndexOf('/');
+
+				if (lastSlash === -1) {
+					url.pathname = `/${filename}`;
+				} else {
+					url.pathname = `${pathname.slice(0, lastSlash + 1)}${filename}`;
+				}
+			}
+
+			return url.toString();
+		} catch {
+			return null;
+		}
+	}
 
 	let copiedPage = $state<string | null>(null);
 	async function copyPageName(page: string) {
 		const filename = `${page}.html`;
+		const copyValue = getPageUrlFromNotes(page) ?? filename;
 
-		await navigator.clipboard.writeText(filename);
+		await navigator.clipboard.writeText(copyValue);
 
 		copiedPage = filename;
 
@@ -42,7 +78,7 @@
 					hover:text-primary-400
 				"
 				onclick={() => copyPageName(page)}
-				title="Copy filename"
+				title={parsedNotes.annLink ? 'Copy URL' : 'Copy filename'}
 			>
 				{page}.html
 

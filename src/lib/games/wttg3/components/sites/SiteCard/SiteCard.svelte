@@ -71,7 +71,7 @@
 			<SiteDetails onUpdate={onUpdateSite} {site} />
 			{#if images}
 				<div class="mt-6 border-t border-neutral-800 pt-6">
-					<SitePageList siteId={site.id} {images} />
+					<SitePageList siteId={site.id} {images} notes={site.notes} />
 				</div>
 			{/if}
 		{/if}

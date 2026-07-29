@@ -1,8 +1,6 @@
 <script lang="ts">
 	import type { WebsiteState } from '$lib/games/wttg3/models/website';
 	import type { WebsiteProgress } from '$lib/games/wttg3/models/session';
-	import { parseSiteNotes } from '$lib/games/wttg3/helpers/siteQueries';
-	import Tag from '$lib/components/ui/Tag.svelte';
 	import { getToastState } from '$lib/state/toast-state.svelte';
 	import FoundTags from '../FoundTags.svelte';
 
@@ -27,12 +25,6 @@
 	}
 	
 	const toastState = getToastState();
-
-	const parsed = $derived(parseSiteNotes(value));
-	async function copy(text: string, message: string) {
-		await navigator.clipboard.writeText(text);
-		toastState.add('Copied', message);
-	}
 </script>
 
 <div class="space-y-6 text-sm">

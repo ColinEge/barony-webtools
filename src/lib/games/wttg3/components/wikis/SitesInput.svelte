@@ -2,7 +2,12 @@
 	import Button from '$lib/components/ui/Button.svelte';
 	import Tag from '$lib/components/ui/Tag.svelte';
 	import { SITES } from '$lib/games/wttg3/data/websites';
-	import { findSiteId, parseAnnLinks } from '../../helpers/siteQueries';
+	import {
+		canonicalizeWikiAnnLink,
+		findSiteId,
+		parseAnnLinks,
+		parseCanonicalWikiAnnLinks
+	} from '../../helpers/siteQueries';
 
 	let {
 		unusedSites,
@@ -17,17 +22,12 @@
 	} = $props();
 
 	let value = $state('');
+	const canonicalCurrentLink = $derived(canonicalizeWikiAnnLink(wikiLink) ?? wikiLink);
 
 	const parsed = $derived.by(() => {
 		const seen = new Set<string>();
 		const siteMatches: Array<{ line: string; id: string | null }> = [];
-		const linkMatches: string[] = [];
-
-		for (const match of parseAnnLinks(value)) {
-			if (!linkMatches.includes(match)) {
-				linkMatches.push(match);
-			}
-		}
+		const linkMatches = parseCanonicalWikiAnnLinks(value);
 
 		for (const line of value.split('\n').map((item) => item.trim()).filter(Boolean)) {
 			if (parseAnnLinks(line).length > 0) {
@@ -61,7 +61,7 @@
 			: parsed.linkMatches[0]
 	);
 	const canUpdateLink = $derived(
-		!hasMultipleLinks && normalizedLink !== null && normalizedLink !== wikiLink
+		!hasMultipleLinks && normalizedLink !== null && normalizedLink !== canonicalCurrentLink
 	);
 	const canApply = $derived(validIds.length > 0 || canUpdateLink);
 
@@ -157,7 +157,7 @@ You There? - ASCII art arrangement."
 		{#if hasMultipleLinks}
 			<Tag variant="warning">✗ Multiple wiki links found; keep only one.</Tag>
 		{:else if parsed.linkMatches.length === 0 && value.trim().length > 0}
-			<Tag variant="warning">No ANN link found (expects https://[32 hex].ann)</Tag>
+			<Tag variant="warning">No ANN link found (expects https://[32 hex].ann...)</Tag>
 		{:else if canUpdateLink}
 			<Tag variant="primary">Wiki link will be updated</Tag>
 		{/if}

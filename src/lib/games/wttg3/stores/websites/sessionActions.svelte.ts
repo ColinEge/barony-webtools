@@ -1,6 +1,7 @@
 import type { Session, WebsiteProgress } from '$lib/games/wttg3/models/session';
 import type { GameSession } from '$lib/models/session';
 import { WIKI_MAX_PAGES } from '$lib/games/wttg3/data/wikis';
+import { canonicalizeWikiAnnLink } from '$lib/games/wttg3/helpers/siteQueries';
 import { getAssignedSiteIds } from '$lib/games/wttg3/helpers/sessionQueries';
 import { sessions } from '$lib/games/wttg3/stores/websites/sessions.svelte';
 
@@ -146,6 +147,11 @@ export function createSessionActions(
 		wikiId: number,
 		link: string
 	) {
+		const canonicalLink = canonicalizeWikiAnnLink(link);
+		if (canonicalLink === null) {
+			return;
+		}
+
 		updateSession(data => {
 			const wiki = data.wikis.find(
 				w => w.wikiId === wikiId
@@ -155,7 +161,7 @@ export function createSessionActions(
 				return;
 			}
 
-			wiki.link = link;
+			wiki.link = canonicalLink;
 		});
 	}
 

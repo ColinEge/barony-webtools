@@ -92,17 +92,43 @@ const KEY_REGEX = /\b([1-8])\s*-\s*([a-fA-F0-9]{8})\b/;
 const DECRYPTED_KEY_REGEX = /\b([A-Fa-f0-9]{4})\b/;
 const FETCH_REGEX = /\bfile:\/\/[a-fA-F0-9]{32}\.fetch\b/i;
 const ANN_REGEX = /\bhttps?:\/\/[a-fA-F0-9]{32}\.ann[^\s]*/i;
+const ANN_GLOBAL_REGEX = /\bhttps?:\/\/[a-fA-F0-9]{32}\.ann[^\s]*/gi;
+const ANN_CANONICAL_REGEX = /^https?:\/\/([a-fA-F0-9]{32})\.ann(?:\/[^\s]*)?$/i;
 
 export function parseAnnLinks(text: string): string[] {
 	if (text === undefined || text === null) {
 		return [];
 	}
 
-	return text.match(ANN_REGEX) ?? [];
+	return text.match(ANN_GLOBAL_REGEX) ?? [];
 }
 
 export function parseFirstAnnLink(text: string): string | undefined {
 	return parseAnnLinks(text)[0];
+}
+
+export function canonicalizeWikiAnnLink(input: string): string | null {
+	const trimmed = input.trim();
+
+	if (!trimmed) {
+		return '';
+	}
+
+	const match = trimmed.match(ANN_CANONICAL_REGEX);
+	if (!match) {
+		return null;
+	}
+
+	const hex = match[1].toLowerCase();
+	return `https://${hex}.ann/index.html`;
+}
+
+export function parseCanonicalWikiAnnLinks(text: string): string[] {
+	const links = parseAnnLinks(text)
+		.map((link) => canonicalizeWikiAnnLink(link))
+		.filter((link): link is string => link !== null);
+
+	return [...new Set(links)];
 }
 
 export function parseSiteNotes(text: string): SiteNotes {

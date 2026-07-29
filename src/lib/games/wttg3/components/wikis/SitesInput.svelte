@@ -2,48 +2,82 @@
 	import Button from '$lib/components/ui/Button.svelte';
 	import Tag from '$lib/components/ui/Tag.svelte';
 	import { SITES } from '$lib/games/wttg3/data/websites';
-	import { findSiteId } from '../../helpers/siteQueries';
+	import { findSiteId, parseAnnLinks } from '../../helpers/siteQueries';
 
 	let {
 		unusedSites,
-		onAdd
+		wikiLink,
+		onAdd,
+		onUpdateLink
 	}: {
 		unusedSites: Set<string>;
+		wikiLink: string;
 		onAdd: (siteIds: string[]) => void;
+		onUpdateLink: (link: string) => void;
 	} = $props();
 
 	let value = $state('');
 
-	const matches = $derived.by(() => {
+	const parsed = $derived.by(() => {
 		const seen = new Set<string>();
+		const siteMatches: Array<{ line: string; id: string | null }> = [];
+		const linkMatches: string[] = [];
 
-		return value
-			.split('\n')
-			.map((line) => line.trim())
-			.filter(Boolean)
-			.map((line) => {
-				const id = findSiteId(line, unusedSites);
+		for (const match of parseAnnLinks(value)) {
+			if (!linkMatches.includes(match)) {
+				linkMatches.push(match);
+			}
+		}
 
-				if (id && seen.has(id)) {
-					return { line, id: null };
-				}
+		for (const line of value.split('\n').map((item) => item.trim()).filter(Boolean)) {
+			if (parseAnnLinks(line).length > 0) {
+				continue;
+			}
 
-				if (id) {
-					seen.add(id);
-				}
+			const id = findSiteId(line, unusedSites);
 
-				return { line, id };
-			});
+			if (id && seen.has(id)) {
+				siteMatches.push({ line, id: null });
+				continue;
+			}
+
+			if (id) {
+				seen.add(id);
+			}
+
+			siteMatches.push({ line, id });
+		}
+
+		return { siteMatches, linkMatches };
 	});
 
-	const validIds = $derived(matches.filter((match) => match.id !== null).map((match) => match.id!));
+	const validIds = $derived(
+		parsed.siteMatches.filter((match) => match.id !== null).map((match) => match.id!)
+	);
+	const hasMultipleLinks = $derived(parsed.linkMatches.length > 1);
+	const normalizedLink = $derived(
+		hasMultipleLinks || parsed.linkMatches.length === 0
+			? null
+			: parsed.linkMatches[0]
+	);
+	const canUpdateLink = $derived(
+		!hasMultipleLinks && normalizedLink !== null && normalizedLink !== wikiLink
+	);
+	const canApply = $derived(validIds.length > 0 || canUpdateLink);
 
 	function add() {
-		if (validIds.length === 0) {
+		if (!canApply) {
 			return;
 		}
 
-		onAdd(validIds);
+		if (validIds.length > 0) {
+			onAdd(validIds);
+		}
+
+		if (canUpdateLink && normalizedLink !== null) {
+			onUpdateLink(normalizedLink);
+		}
+
 		value = '';
 	}
 </script>
@@ -68,7 +102,10 @@
 			focus:border-primary-500
 			outline-none
 		"
-			placeholder="Paste full wiki contents like:
+			placeholder="Wiki details (multifunctional):
+Wiki Link: https://0123456789abcdef0123456789abcdef.ann
+
+Paste full wiki contents like:
 Bathroom Cams - Cam site for cams in public restrooms.
 Building A Future - Investment opportunity that leverages human labor.
 Chevron - Leaked military mission logs.
@@ -95,22 +132,34 @@ VoluVision - Expand your mind with a clever key.
 You There? - ASCII art arrangement."
 		></textarea>
 
-		<Button variant="primary" disabled={validIds.length === 0} onclick={add}>
-			Add {validIds.length} Site{validIds.length === 1 ? '' : 's'}
+		<Button variant="primary" disabled={!canApply} onclick={add}>
+			Apply
 		</Button>
 	</div>
 
-		<div class="flex flex-wrap gap-2 text-sm">
-			{#each matches as match}
-				{#if match.id}
-					<Tag>
-						✓ {SITES[match.id].name}
-					</Tag>
-				{:else}
-					<Tag variant="warning">
-						✗ {match.line}
-					</Tag>
-				{/if}
-			{/each}
-		</div>
+	<div class="flex flex-wrap gap-2 text-sm">
+		{#each parsed.siteMatches as match}
+			{#if match.id}
+				<Tag>
+					✓ {SITES[match.id].name}
+				</Tag>
+			{:else}
+				<Tag variant="warning">
+					✗ {match.line}
+				</Tag>
+			{/if}
+		{/each}
+
+		{#each parsed.linkMatches as linkMatch}
+			<Tag variant="primary">Wiki link: {linkMatch}</Tag>
+		{/each}
+
+		{#if hasMultipleLinks}
+			<Tag variant="warning">✗ Multiple wiki links found; keep only one.</Tag>
+		{:else if parsed.linkMatches.length === 0 && value.trim().length > 0}
+			<Tag variant="warning">No ANN link found (expects https://[32 hex].ann)</Tag>
+		{:else if canUpdateLink}
+			<Tag variant="primary">Wiki link will be updated</Tag>
+		{/if}
+	</div>
 </div>

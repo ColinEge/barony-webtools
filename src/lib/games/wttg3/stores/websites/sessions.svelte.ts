@@ -8,6 +8,7 @@ function createData(): Session {
 		wikis: WIKIS.map((wiki) => ({
 			wikiId: wiki.id,
 			purchased: wiki.cost === 0, // Free wikis are purchased
+			link: '',
 			sites: []
 		})),
 		miners: MINERS.map((miner) => ({

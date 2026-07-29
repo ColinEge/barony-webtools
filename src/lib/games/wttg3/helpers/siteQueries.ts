@@ -93,6 +93,18 @@ const DECRYPTED_KEY_REGEX = /\b([A-Fa-f0-9]{4})\b/;
 const FETCH_REGEX = /\bfile:\/\/[a-fA-F0-9]{32}\.fetch\b/i;
 const ANN_REGEX = /\bhttps?:\/\/[a-fA-F0-9]{32}\.ann[^\s]*/i;
 
+export function parseAnnLinks(text: string): string[] {
+	if (text === undefined || text === null) {
+		return [];
+	}
+
+	return text.match(ANN_REGEX) ?? [];
+}
+
+export function parseFirstAnnLink(text: string): string | undefined {
+	return parseAnnLinks(text)[0];
+}
+
 export function parseSiteNotes(text: string): SiteNotes {
 	if (text === undefined || text === null) {
 		return {};
@@ -115,11 +127,11 @@ export function parseSiteNotes(text: string): SiteNotes {
         notes.fetchUrl = fetchMatch[0];
     }
 
-    const annMatch = text.match(ANN_REGEX);
+	const annMatch = parseFirstAnnLink(text);
 
-    if (annMatch) {
-        notes.annLink = annMatch[0];
-    }
+	if (annMatch) {
+		notes.annLink = annMatch;
+	}
 
     return notes;
 }

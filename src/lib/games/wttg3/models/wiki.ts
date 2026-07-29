@@ -12,5 +12,6 @@ export interface Wiki {
 
 export interface WikiState extends Wiki {
 	purchased: boolean;
+  link: string;
 	sites: WebsiteState[];
 }

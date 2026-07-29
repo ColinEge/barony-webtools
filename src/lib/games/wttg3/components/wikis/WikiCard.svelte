@@ -11,12 +11,14 @@
 	import SitesInput from './SitesInput.svelte';
 	import Tag from '$lib/components/ui/Tag.svelte';
 	import SiteGrid from '../sites/SiteGrid.svelte';
+	import { getToastState } from '$lib/state/toast-state.svelte';
 
 	let {
 		wiki,
 		sites = [],
 		onPurchase,
 		onAddSites,
+		onUpdateLink,
 		onRemoveSite,
 		onClearSite,
 		onUpdateSite
@@ -25,6 +27,7 @@
 		sites: WebsiteState[];
 		onPurchase: () => void;
 		onAddSites: (siteIds: string[]) => void;
+		onUpdateLink: (link: string) => void;
 		onRemoveSite: (id: string) => void;
 		onClearSite: (id: string, cleared: boolean) => void;
 		onUpdateSite: (id: string, update: Partial<WebsiteState>) => void;
@@ -52,6 +55,12 @@
 	let sortMode: SortMode = $state('time');
 	const filteredSites = $derived(wiki.sites.filter((site) => categories.includes(site.category)));
 	const sortedSites = $derived(sortSites(filteredSites, sortMode));
+
+	const toastState = getToastState();
+	async function copy(text: string, message: string) {
+		await navigator.clipboard.writeText(text);
+		toastState.add('Copied', message);
+	}
 </script>
 
 <div
@@ -63,9 +72,19 @@
 	"
 >
 	<div class="flex items-center justify-between">
-		<h2 class="text-lg font-semibold text-neutral-100">
-			{wiki.name} ({wiki.sites.length}/{WIKI_MAX_PAGES})
-		</h2>
+		<div class="flex items-center gap-2">
+			<h2 class="text-lg font-semibold text-neutral-100">
+				{wiki.name} ({wiki.sites.length}/{WIKI_MAX_PAGES})
+			</h2>
+			{#if wiki.link}
+				<Tag
+					variant="primary"
+			onclick={() => copy(wiki.link, 'Wiki link copied to clipboard')}
+				>
+					Wiki link
+				</Tag>
+			{/if}
+		</div>
 
 		{#if locked}
 			<span class="text-sm text-warning-400">
@@ -83,7 +102,12 @@
 			</Button>
 		</div>
 	{:else}
-		<SitesInput unusedSites={new Set(sites.map((site) => site.id))} onAdd={onAddSites} />
+		<SitesInput
+			unusedSites={new Set(sites.map((site) => site.id))}
+			wikiLink={wiki.link}
+			onAdd={onAddSites}
+			{onUpdateLink}
+		/>
 		<div class="mt-4 flex flex-wrap items-center gap-3">
 			<select
 				bind:value={sortMode}
@@ -131,9 +155,6 @@
 			{/if}
 		{/if}
 
-		<SiteGrid
-				sites={sortedSites}
-				onSelect={(siteId) => selectSite(siteId)}
-			/>
+		<SiteGrid sites={sortedSites} onSelect={(siteId) => selectSite(siteId)} />
 	{/if}
 </div>

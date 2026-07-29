@@ -80,6 +80,7 @@
 				sites={unusedSites}
 				onPurchase={() => actions.purchaseWiki(selectedWiki.id)}
 				onAddSites={(siteIds) => onAddSites(selectedWiki.id, siteIds)}
+				onUpdateLink={(link) => actions.updateWikiLink(selectedWiki.id, link)}
 				onRemoveSite={(id) => actions.removeSite(selectedWiki.id, id)}
 				onClearSite={(id, cleared) => actions.clearSite(selectedWiki.id, id, cleared)}
 				onUpdateSite={(id, update) => actions.updateSite(selectedWiki.id, id, update)}

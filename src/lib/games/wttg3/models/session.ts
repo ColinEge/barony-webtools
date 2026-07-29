@@ -16,6 +16,7 @@ export interface WebsiteProgress {
 export interface WikiProgress {
 	wikiId: number;
 	purchased: boolean;
+	link?: string;
 	sites: Array<WebsiteProgress>;
 }
 

@@ -30,8 +30,10 @@ export function getUnusedSites(
 
 	const progress: WebsiteProgress[] = [...unusedIds].map(id => ({
 		id,
+		notes: '',
 		identified: false,
-		cleared: false
+		cleared: false,
+		keyDecrypted: false
 	}));
 
 	return hydrateSites(progress);
@@ -68,6 +70,7 @@ export function getWikiState(
 	return {
 		...wiki,
 		purchased: progress.purchased,
+		link: progress.link ?? '',
 		sites: hydrateSites(progress.sites)
 	};
 }

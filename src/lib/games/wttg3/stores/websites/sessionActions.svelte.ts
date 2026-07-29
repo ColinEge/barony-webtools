@@ -142,13 +142,31 @@ export function createSessionActions(
 		});
 	}
 
+	function updateWikiLink(
+		wikiId: number,
+		link: string
+	) {
+		updateSession(data => {
+			const wiki = data.wikis.find(
+				w => w.wikiId === wikiId
+			);
+
+			if (!wiki) {
+				return;
+			}
+
+			wiki.link = link;
+		});
+	}
+
 	return {
 		updateSession,
 		purchaseWiki,
 		addSite,
 		removeSite,
 		clearSite,
-		updateSite
+		updateSite,
+		updateWikiLink
 	};
 }
 
